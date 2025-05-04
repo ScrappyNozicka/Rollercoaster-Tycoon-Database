@@ -33,6 +33,5 @@ stalls = [
         "stall_name": "Popcorn Stall",
         "park_name": "Test Park",
         "foods_served": ["Test Food"],
-    }
+    },
 ]
-

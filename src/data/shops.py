@@ -13,5 +13,5 @@ shops = [
         "stall_name": "Information Kiosk",
         "park_name": "Test Park",
         "foods_served": ["Umbrellas", "Park Maps"],
-    }
+    },
 ]

@@ -13,5 +13,5 @@ index = {
     "shops": shops,
     "other facilities": other_fac,
     "items": items,
-    "foods": foods
-    }
+    "foods": foods,
+}

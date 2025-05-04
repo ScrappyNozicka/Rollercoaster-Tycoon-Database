@@ -5,5 +5,5 @@ foods = [
     {"food_name": "Burgers", "vegan_option": True},
     {"food_name": "Drinks", "vegan_option": True},
     {"food_name": "Candyfloss", "vegan_option": False},
-    {"food_name": "Popcorn", "vegan_option": True}
-    ]
+    {"food_name": "Popcorn", "vegan_option": True},
+]
