@@ -7,5 +7,5 @@ other_fac = [
     {"fac_name": "Rocky Toilets", "park_name": "Bumbly Beach"},
     {"fac_name": "Sleepy Toilets", "park_name": "Katie's Dreamland"},
     {"fac_name": "Rapid Toilets", "park_name": "White Water Park"},
-    {"fac_name": "Innapropriate Toilets", "park_name": "Pokey Park"}
-    ]
+    {"fac_name": "Innapropriate Toilets", "park_name": "Pokey Park"},
+]

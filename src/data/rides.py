@@ -4,7 +4,7 @@ rides = [
         "ride_type": "Transport Rides",
         "year_opened": 2005,
         "park_name": "Dynamite Dunes",
-        "votes": 104
+        "votes": 104,
     },
     {
         "ride_name": "Small Monorail Cars",

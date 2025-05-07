@@ -105,4 +105,3 @@ shops = [
         "foods_served": ["Umbrellas", "Park Maps"],
     },
 ]
-
