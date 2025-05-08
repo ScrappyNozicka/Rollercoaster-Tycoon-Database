@@ -30,8 +30,8 @@ jobs:
       PGUSER: ${{ secrets.PGUSER }}
       PGPASSWORD: ${{ secrets.PGPASSWORD }}
       PGDATABASE: ${{ secrets.PGDATABASE }}
-      PGHOST: localhost
-      PGPORT: 5432
+      PGHOST: ${{ secrets.PGHOST }}
+      PGPORT: ${{ secrets.PGPORT }}
     steps:
       - name: checkout and clone repo
         uses: actions/checkout@v4
