@@ -23,7 +23,7 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     db.run("DROP TABLE IF EXISTS parks")
 
     create_parks(db)
-    # create_rides(db)
+    create_rides(db)
     # create_other_fac(db)
     # create_stalls(db)
     # create_foods(db)
@@ -33,7 +33,7 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     # create_shops_items(db)
 
     insert_parks_data(db)
-    # insert_rides_data(db)
+    insert_rides_data(db)
     # insert_other_fac_data(db)
     # insert_stalls_data(db)
     # insert_foods_data(db)
@@ -72,4 +72,41 @@ def insert_parks_data(db):
             year_opened=year_opened,
             annual_attendance=annual_attendance
 
+        )
+
+def create_rides(db):
+    return db.run(
+        """
+            CREATE TABLE rides 
+                (
+                ride_id SERIAL PRIMARY KEY,
+                ride_name VARCHAR(127) NOT NULL,
+                ride_type VARCHAR(127) NOT NULL,
+                year_opened INT NOT NULL,
+                park_name VARCHAR(127) NOT NULL,
+                votes INT NOT NULL
+                )
+            """
+        )
+
+def insert_rides_data(db):
+    insert_query = """
+    INSERT INTO rides
+    (ride_name, ride_type, year_opened, park_name, votes)
+    VALUES
+    (:ride_name, :ride_type, :year_opened, :park_name, :votes)
+    """
+    for ride in rides:
+        ride_name = ride["ride_name"]
+        ride_type = ride["ride_type"]
+        year_opened = ride["year_opened"]
+        park_name = ride["park_name"]
+        votes = ride["votes"]
+        db.run(
+            insert_query,
+            ride_name=ride_name,
+            ride_type=ride_type,
+            year_opened=year_opened,
+            park_name=park_name,
+            votes=votes
         )

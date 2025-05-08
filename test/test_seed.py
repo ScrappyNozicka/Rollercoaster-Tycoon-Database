@@ -66,3 +66,70 @@ def test_parks_table_has_annual_attendance_column(db):
                   AND column_name = 'annual_attendance';"
     expected = db.run(test_query)
     assert  expected == [["annual_attendance"]]
+
+
+
+
+    
+def test_rides_table_exists(db):
+    """test if rides table exists"""
+    test_query = "SELECT EXISTS (SELECT FROM information_schema.tables \
+                  WHERE table_name = 'rides');"
+    expected = db.run(test_query)
+    assert expected == [[True]]
+
+def test_rides_table_has_ride_id_column_as_serial_primary_key(db):
+    """Tests if rides table has ride_id as serial primary key"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'rides' \
+                  AND column_name = 'ride_id';"
+    expected = db.run(test_query)
+    assert  expected[0][0] == "ride_id"
+    assert  expected[0][1] == "integer"
+    assert  expected[0][2] == "nextval('rides_ride_id_seq'::regclass)" 
+
+def test_rides_table_has_ride_name_column(db):
+    """Tests if rides table has park name column"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'rides' \
+                  AND column_name = 'ride_name';"
+    expected = db.run(test_query)
+    assert  expected == [["ride_name", "character varying", None]]
+
+def test_rides_table_has_ride_type_column(db):
+    """Tests if rides table has ride type column"""
+    test_query = "SELECT column_name \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'rides' \
+                  AND column_name = 'ride_type';"
+    expected = db.run(test_query)
+    assert  expected == [["ride_type"]]
+
+def test_rides_table_has_year_opened_column(db):
+    """Tests if rides table has year opened column"""
+    test_query = "SELECT column_name \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'rides' \
+                  AND column_name = 'year_opened';"
+    expected = db.run(test_query)
+    assert  expected == [["year_opened"]]
+
+def test_rides_table_has_park_name_column(db):
+    """Tests if rides table has park name column"""
+    test_query = "SELECT column_name \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'rides' \
+                  AND column_name = 'park_name';"
+    expected = db.run(test_query)
+    assert  expected == [["park_name"]]
+
+def test_rides_table_has_votes_column(db):
+    """Tests if rides table has votes column"""
+    test_query = "SELECT column_name \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'rides' \
+                  AND column_name = 'votes';"
+    expected = db.run(test_query)
+    assert  expected == [["votes"]]
