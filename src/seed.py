@@ -24,7 +24,7 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
 
     create_parks(db)
     create_rides(db)
-    # create_other_fac(db)
+    create_other_fac(db)
     # create_stalls(db)
     # create_foods(db)
     # create_shops_foods(db)
@@ -34,7 +34,7 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
 
     insert_parks_data(db)
     insert_rides_data(db)
-    # insert_other_fac_data(db)
+    insert_other_fac_data(db)
     # insert_stalls_data(db)
     # insert_foods_data(db)
     # insert_stalls_foods_data(db)
@@ -109,4 +109,32 @@ def insert_rides_data(db):
             year_opened=year_opened,
             park_name=park_name,
             votes=votes
+        )
+
+def create_other_fac(db):
+    return db.run(
+        """
+            CREATE TABLE other_fac 
+                (
+                fac_id SERIAL PRIMARY KEY,
+                fac_name VARCHAR(127) NOT NULL,
+                park_name VARCHAR(127) NOT NULL
+                )
+            """
+        )
+
+def insert_other_fac_data(db):
+    insert_query = """
+    INSERT INTO other_fac
+    (fac_name, park_name)
+    VALUES
+    (:fac_name, :park_name )
+    """
+    for fac in other_fac:
+        fac_name = fac["fac_name"]
+        park_name = fac["park_name"]
+        db.run(
+            insert_query,
+            fac_name=fac_name,
+            park_name=park_name
         )
