@@ -214,16 +214,62 @@ def test_stalls_table_has_food_served_column(db):
     test_query = "SELECT column_name \
                   FROM information_schema.columns \
                   WHERE table_name = 'stalls' \
-                  AND column_name = 'food_served';"
+                  AND column_name = 'foods_served';"
     expected = db.run(test_query)
-    assert  expected == [["food_served"]]
+    assert  expected == [["foods_served"]]
 
-def test_stalls_table_has_expected_value_in_food_served_column(db):
-    """Tests if stalls table has expected value in food served column"""
-    test_query = "SELECT column_name \
-                  FROM information_schema.columns \
-                  WHERE table_name = 'stalls' \
-                  AND column_name = 'food_served';"
+def test_drinks_stall_has_expected_foods_served_value(db):
+    """Tests if drinks stall has at least one value in food served column"""
+    test_query = "SELECT * \
+                  FROM stalls \
+                  WHERE 'Drinks' = ANY(foods_served);"
     expected = db.run(test_query)
-    assert  expected == [["food_served"]]
-    assert  expected["food_served"] == ["Drinks"]
+    assert len(expected) > 0
+
+def test_fruity_ices_stall_has_expected_value(db):
+    """Tests if fruity ices stall has at least one value in food served column"""
+    test_query = "SELECT * \
+                  FROM stalls \
+                  WHERE 'Ice Cream' = ANY(foods_served);"
+    expected = db.run(test_query)
+    assert len(expected) > 0
+
+def test_burger_bar_stall_has_expected_foods_served_value(db):
+    """Tests if burger bar stall has at least one value in food served column"""
+    test_query = "SELECT * \
+                  FROM stalls \
+                  WHERE 'Burgers' = ANY(foods_served);"
+    expected = db.run(test_query)
+    assert len(expected) > 0
+
+def test_candyfloss_stall_has_expected_foods_served_value(db):
+    """Tests if candyfloss stall has at least one value in food served column"""
+    test_query = "SELECT * \
+                  FROM stalls \
+                  WHERE 'Candyfloss' = ANY(foods_served);"
+    expected = db.run(test_query)
+    assert len(expected) > 0
+
+def test_pizza_stall_has_expected_foods_served_value(db):
+    """Tests if pizza stall has at least one value in food served column"""
+    test_query = "SELECT * \
+                  FROM stalls \
+                  WHERE 'Pizza' = ANY(foods_served);"
+    expected = db.run(test_query)
+    assert len(expected) > 0
+
+def test_chip_shop_stall_has_expected_foods_served_value(db):
+    """Tests if chip shop stall has at least one value in food served column"""
+    test_query = "SELECT * \
+                  FROM stalls \
+                  WHERE 'Chips' = ANY(foods_served);"
+    expected = db.run(test_query)
+    assert len(expected) > 0
+
+def test_popcorn_stall_has_expected_foods_served_value(db):
+    """Tests if popcorn stall has at least one value in food served column"""
+    test_query = "SELECT * \
+                  FROM stalls \
+                  WHERE 'Popcorn' = ANY(foods_served);"
+    expected = db.run(test_query)
+    assert len(expected) > 0
