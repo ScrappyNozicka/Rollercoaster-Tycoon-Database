@@ -295,7 +295,7 @@ def test_foods_table_has__fac_id_column_as_serial_primary_key(db):
                   WHERE table_name = 'foods' \
                   AND column_name = 'food_id';"
     expected = db.run(test_query)
-    assert  expected[0][0] == "foods"
+    assert  expected[0][0] == "food_id"
     assert  expected[0][1] == "integer"
     assert  expected[0][2] == "nextval('foods_food_id_seq'::regclass)" 
 
