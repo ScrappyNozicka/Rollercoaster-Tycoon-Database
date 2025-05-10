@@ -273,3 +273,49 @@ def test_popcorn_stall_has_expected_foods_served_value(db):
                   WHERE 'Popcorn' = ANY(foods_served);"
     expected = db.run(test_query)
     assert len(expected) > 0
+
+
+
+
+
+
+
+
+def test_foods_table_exists(db):
+    """test if foods table exists"""
+    test_query = "SELECT EXISTS (SELECT FROM information_schema.tables \
+                  WHERE table_name = 'foods');"
+    expected = db.run(test_query)
+    assert expected == [[True]]
+
+def test_foods_table_has__fac_id_column_as_serial_primary_key(db):
+    """Tests if foods table has food_id as serial primary key"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'foods' \
+                  AND column_name = 'food_id';"
+    expected = db.run(test_query)
+    assert  expected[0][0] == "foods"
+    assert  expected[0][1] == "integer"
+    assert  expected[0][2] == "nextval('foods_food_id_seq'::regclass)" 
+
+def test_foods_table_has_food_name_column(db):
+    """Tests if foods table has food name column"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'foods' \
+                  AND column_name = 'food_name';"
+    expected = db.run(test_query)
+    assert  expected == [["food_name", "character varying", None]]
+
+def test_foods_table_has_vegan_option_column(db):
+    """Tests if foods table has vegan option column"""
+    test_query = "SELECT column_name \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'foods' \
+                  AND column_name = 'vegan_option';"
+    expected = db.run(test_query)
+    assert  expected == [["vegan_option"]]
+
+
+
