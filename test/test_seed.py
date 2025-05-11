@@ -378,10 +378,26 @@ def test_shops_table_has_items_sold_column(db):
 
 
 
-# def test_popcorn_stall_has_expected_foods_served_value(db):
-#     """Tests if popcorn stall has at least one value in food served column"""
-#     test_query = "SELECT * \
-#                   FROM stalls \
-#                   WHERE 'Popcorn' = ANY(foods_served);"
-#     expected = db.run(test_query)
-#     assert len(expected) > 0
+def test_expected_amount_of_balloon_stall_sells_balloons(db):
+    """Tests for the expected amount of balloon stall selling balloons"""
+    test_query = "SELECT * \
+                  FROM shops \
+                  WHERE 'Balloons' = ANY(items_sold);"
+    expected = db.run(test_query)
+    assert len(expected) == 9
+
+def test_expected_amount_of_information_kiosks_sells_park_maps(db):
+    """Tests for the expected amount of information kiosk selling park maps"""
+    test_query = "SELECT * \
+                  FROM shops \
+                  WHERE 'Park Maps' = ANY(items_sold);"
+    expected = db.run(test_query)
+    assert len(expected) == 7
+
+def test_expected_amount_of_souvenir_stall_sells_cuddly_toys(db):
+    """Test for the expected amount of souvenir stalls selling cuddly toys"""
+    test_query = "SELECT * \
+                  FROM shops \
+                  WHERE 'Cuddly Toys' = ANY(items_sold);"
+    expected = db.run(test_query)
+    assert len(expected) == 5
