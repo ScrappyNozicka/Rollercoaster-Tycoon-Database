@@ -21,7 +21,7 @@ def test_parks_table_exists(db):
     assert expected == [[True]]
 
 def test_parks_table_has_park_id_column_as_serial_primary_key(db):
-    """Tests if parks table has park_id as serial primary key"""
+    """Tests if parks table has park id as serial primary key"""
     test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'parks' \
@@ -76,7 +76,7 @@ def test_rides_table_exists(db):
     assert expected == [[True]]
 
 def test_rides_table_has_ride_id_column_as_serial_primary_key(db):
-    """Tests if rides table has ride_id as serial primary key"""
+    """Tests if rides table has ride id as serial primary key"""
     test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'rides' \
@@ -142,7 +142,7 @@ def test_other_fac_table_exists(db):
     assert expected == [[True]]
 
 def test_other_fac_has__fac_id_column_as_serial_primary_key(db):
-    """Tests if other facilities table has fac_id as serial primary key"""
+    """Tests if other facilities table has facility id as serial primary key"""
     test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'other_fac' \
@@ -180,8 +180,8 @@ def test_stalls_table_exists(db):
     expected = db.run(test_query)
     assert expected == [[True]]
 
-def test_stalls_has_other_stall_id_column_as_serial_primary_key(db):
-    """Tests if stalls table has stall_id as serial primary key"""
+def test_stalls_has_stall_id_column_as_serial_primary_key(db):
+    """Tests if stalls table has stall id as serial primary key"""
     test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'stalls' \
@@ -289,7 +289,7 @@ def test_foods_table_exists(db):
     assert expected == [[True]]
 
 def test_foods_table_has__fac_id_column_as_serial_primary_key(db):
-    """Tests if foods table has food_id as serial primary key"""
+    """Tests if foods table has food id as serial primary key"""
     test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'foods' \
@@ -319,3 +319,69 @@ def test_foods_table_has_vegan_option_column(db):
 
 
 
+
+
+
+
+
+
+
+def test_shops_table_exists(db):
+    """test if shops table exists"""
+    test_query = "SELECT EXISTS (SELECT FROM information_schema.tables \
+                  WHERE table_name = 'shops');"
+    expected = db.run(test_query)
+    assert expected == [[True]]
+
+def test_shops_has_shop_id_column_as_serial_primary_key(db):
+    """Tests if shops table has shop id as serial primary key"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'shops' \
+                  AND column_name = 'shop_id';"
+    expected = db.run(test_query)
+    assert  expected[0][0] == "shop_id"
+    assert  expected[0][1] == "integer"
+    assert  expected[0][2] == "nextval('shops_shop_id_seq'::regclass)" 
+
+def test_shops_table_has_shop_name_column(db):
+    """Tests if shops table has shop name column"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'shops' \
+                  AND column_name = 'shop_name';"
+    expected = db.run(test_query)
+    assert  expected == [["shop_name", "character varying", None]]
+
+def test_shops_table_has_park_name_column(db):
+    """Tests if shops table has park name column"""
+    test_query = "SELECT column_name \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'shops' \
+                  AND column_name = 'park_name';"
+    expected = db.run(test_query)
+    assert  expected == [["park_name"]]
+
+def test_shops_table_has_items_sold_column(db):
+    """Tests if shops table has items sold column"""
+    test_query = "SELECT column_name \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'shops' \
+                  AND column_name = 'items_sold';"
+    expected = db.run(test_query)
+    assert  expected == [["items_sold"]]
+
+
+
+
+
+
+
+
+# def test_popcorn_stall_has_expected_foods_served_value(db):
+#     """Tests if popcorn stall has at least one value in food served column"""
+#     test_query = "SELECT * \
+#                   FROM stalls \
+#                   WHERE 'Popcorn' = ANY(foods_served);"
+#     expected = db.run(test_query)
+#     assert len(expected) > 0
