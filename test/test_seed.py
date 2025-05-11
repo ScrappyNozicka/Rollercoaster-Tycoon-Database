@@ -218,61 +218,61 @@ def test_stalls_table_has_food_served_column(db):
     expected = db.run(test_query)
     assert  expected == [["foods_served"]]
 
-def test_drinks_stall_has_expected_foods_served_value(db):
-    """Tests if drinks stall has at least one value in food served column"""
+def test_expected_amount_of_drinks_stalls_sells_drinks(db):
+    """Tests for the expected amount of drinks stalls selling drinks"""
     test_query = "SELECT * \
                   FROM stalls \
                   WHERE 'Drinks' = ANY(foods_served);"
     expected = db.run(test_query)
-    assert len(expected) > 0
+    assert len(expected) == 9
 
-def test_fruity_ices_stall_has_expected_value(db):
-    """Tests if fruity ices stall has at least one value in food served column"""
+def test_expected_amount_of_fruity_ices_stalls_sells_ice_creams(db):
+    """Tests for the expected amount of fruity ices stalls selling ice creams"""
     test_query = "SELECT * \
                   FROM stalls \
                   WHERE 'Ice Cream' = ANY(foods_served);"
     expected = db.run(test_query)
-    assert len(expected) > 0
+    assert len(expected) == 7
 
-def test_burger_bar_stall_has_expected_foods_served_value(db):
-    """Tests if burger bar stall has at least one value in food served column"""
+def test_expected_amount_of_burger_bar_stall_sells_burgers(db):
+    """Tests for the expected amount of burger bar stalls selling burgers"""
     test_query = "SELECT * \
                   FROM stalls \
                   WHERE 'Burgers' = ANY(foods_served);"
     expected = db.run(test_query)
-    assert len(expected) > 0
+    assert len(expected) == 6
 
-def test_candyfloss_stall_has_expected_foods_served_value(db):
-    """Tests if candyfloss stall has at least one value in food served column"""
+def test_expected_amount_of_candyfloss_stall_sells_candyfloss(db):
+    """Tests for the expected amount of candyfloss stalls selling candyfloss"""
     test_query = "SELECT * \
                   FROM stalls \
                   WHERE 'Candyfloss' = ANY(foods_served);"
     expected = db.run(test_query)
-    assert len(expected) > 0
+    assert len(expected) == 7
 
-def test_pizza_stall_has_expected_foods_served_value(db):
-    """Tests if pizza stall has at least one value in food served column"""
+def test_expected_amount_of_pizza_stall_sells_pizzas(db):
+    """Tests for the expected amount of pizza stalls selling pizzas"""
     test_query = "SELECT * \
                   FROM stalls \
                   WHERE 'Pizza' = ANY(foods_served);"
     expected = db.run(test_query)
-    assert len(expected) > 0
+    assert len(expected) == 5
 
-def test_chip_shop_stall_has_expected_foods_served_value(db):
-    """Tests if chip shop stall has at least one value in food served column"""
+def test_expected_amount_of_chip_shop_stall_sells_chips(db):
+    """Tests for the expected amount of chip shop stalls selling chips"""
     test_query = "SELECT * \
                   FROM stalls \
                   WHERE 'Chips' = ANY(foods_served);"
     expected = db.run(test_query)
-    assert len(expected) > 0
+    assert len(expected) == 5
 
-def test_popcorn_stall_has_expected_foods_served_value(db):
-    """Tests if popcorn stall has at least one value in food served column"""
+def test_expected_amount_of_popcorn_stalls_sells_popcorns(db):
+    """Tests for the expected amount of popcorn stalls selling popcorn"""
     test_query = "SELECT * \
                   FROM stalls \
                   WHERE 'Popcorn' = ANY(foods_served);"
     expected = db.run(test_query)
-    assert len(expected) > 0
+    assert len(expected) == 5
 
 
 
@@ -316,15 +316,6 @@ def test_foods_table_has_vegan_option_column(db):
                   AND column_name = 'vegan_option';"
     expected = db.run(test_query)
     assert  expected == [["vegan_option"]]
-
-
-
-
-
-
-
-
-
 
 def test_shops_table_exists(db):
     """test if shops table exists"""
@@ -370,13 +361,6 @@ def test_shops_table_has_items_sold_column(db):
                   AND column_name = 'items_sold';"
     expected = db.run(test_query)
     assert  expected == [["items_sold"]]
-
-
-
-
-
-
-
 
 def test_expected_amount_of_balloon_stall_sells_balloons(db):
     """Tests for the expected amount of balloon stall selling balloons"""
