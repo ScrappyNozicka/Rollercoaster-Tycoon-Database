@@ -12,8 +12,8 @@ def create_con():
     )
     return con
 
-if __name__ == "__main__":
-    con = create_con()
-
 def close_db(con):
     con.close()
+
+if __name__ == "__main__":
+    con = create_con()
