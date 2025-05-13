@@ -29,7 +29,7 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     create_foods(db)
     # create_shops_foods(db)
     create_shops(db)
-    # create_items(db)
+    create_items(db)
     # create_shops_items(db)
 
     insert_parks_data(db)
@@ -39,7 +39,7 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     insert_foods_data(db)
     # insert_stalls_foods_data(db)
     insert_shops_data(db)
-    # insert_items_data(db)
+    insert_items_data(db)
     # insert_shops_items_data(db)
 
 def create_parks(db):
@@ -227,4 +227,32 @@ def insert_shops_data(db):
             shop_name=shop_name,
             park_name=park_name,
             items_sold=items_sold
+        )
+
+def create_items(db):
+    return db.run(
+        """
+            CREATE TABLE items 
+                (
+                item_id SERIAL PRIMARY KEY,
+                item_name VARCHAR(127) NOT NULL,
+                multi_colour_option BOOL NOT NULL
+                )
+            """
+        )
+
+def insert_items_data(db):
+    insert_query = """
+    INSERT INTO items
+    (item_name, multi_colour_option)
+    VALUES
+    (:item_name, :multi_colour_option)
+    """
+    for item in items:
+        item_name = item["item_name"]
+        multi_colour_option = item["multi_colour_option"]
+        db.run(
+            insert_query,
+            item_name=item_name,
+            multi_colour_option=multi_colour_option
         )
