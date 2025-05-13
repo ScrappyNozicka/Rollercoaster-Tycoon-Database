@@ -67,7 +67,6 @@ def test_parks_table_has_annual_attendance_column(db):
     expected = db.run(test_query)
     assert  expected == [["annual_attendance"]]
 
-
 def test_rides_table_exists(db):
     """test if rides table exists"""
     test_query = "SELECT EXISTS (SELECT FROM information_schema.tables \
@@ -131,9 +130,6 @@ def test_rides_table_has_votes_column(db):
     expected = db.run(test_query)
     assert  expected == [["votes"]]
 
-
-
-
 def test_other_fac_table_exists(db):
     """test if other facilities table exists"""
     test_query = "SELECT EXISTS (SELECT FROM information_schema.tables \
@@ -169,9 +165,6 @@ def test_other_fac_table_has_ride_type_column(db):
                   AND column_name = 'fac_name';"
     expected = db.run(test_query)
     assert  expected == [["fac_name"]]
-
-
-
 
 def test_stalls_table_exists(db):
     """test if stalls table exists"""
@@ -274,13 +267,6 @@ def test_expected_amount_of_popcorn_stalls_sells_popcorns(db):
     expected = db.run(test_query)
     assert len(expected) == 5
 
-
-
-
-
-
-
-
 def test_foods_table_exists(db):
     """test if foods table exists"""
     test_query = "SELECT EXISTS (SELECT FROM information_schema.tables \
@@ -288,7 +274,7 @@ def test_foods_table_exists(db):
     expected = db.run(test_query)
     assert expected == [[True]]
 
-def test_foods_table_has__fac_id_column_as_serial_primary_key(db):
+def test_foods_table_has__food_id_column_as_serial_primary_key(db):
     """Tests if foods table has food id as serial primary key"""
     test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
@@ -385,3 +371,39 @@ def test_expected_amount_of_souvenir_stall_sells_cuddly_toys(db):
                   WHERE 'Cuddly Toys' = ANY(items_sold);"
     expected = db.run(test_query)
     assert len(expected) == 5
+
+def test_items_table_exists(db):
+    """test if items table exists"""
+    test_query = "SELECT EXISTS (SELECT FROM information_schema.tables \
+                  WHERE table_name = 'items');"
+    expected = db.run(test_query)
+    assert expected == [[True]]
+
+def test_items_table_has__item_id_column_as_serial_primary_key(db):
+    """Tests if items table has item id as serial primary key"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'items' \
+                  AND column_name = 'item_id';"
+    expected = db.run(test_query)
+    assert  expected[0][0] == "item_id"
+    assert  expected[0][1] == "integer"
+    assert  expected[0][2] == "nextval('items_item_id_seq'::regclass)" 
+
+def test_items_table_has_item_name_column(db):
+    """Tests if items table has item name column"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'items' \
+                  AND column_name = 'item_name';"
+    expected = db.run(test_query)
+    assert  expected == [["item_name", "character varying", None]]
+
+def test_items_table_has_multi_colour_option_column(db):
+    """Tests if items table has multi colour option column"""
+    test_query = "SELECT column_name \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'items' \
+                  AND column_name = 'multi_colour_option';"
+    expected = db.run(test_query)
+    assert  expected == [["multi_colour_option"]]
