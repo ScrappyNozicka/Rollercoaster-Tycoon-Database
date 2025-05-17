@@ -27,20 +27,31 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     create_other_fac(db)
     create_stalls(db)
     create_foods(db)
-    # create_shops_foods(db)
     create_shops(db)
     create_items(db)
-    # create_shops_items(db)
 
     insert_parks_data(db)
     insert_rides_data(db)
     insert_other_fac_data(db)
     insert_stalls_data(db)
     insert_foods_data(db)
-    # insert_stalls_foods_data(db)
     insert_shops_data(db)
     insert_items_data(db)
+
+    #alter_table rides
+    #alter_table other_fac
+    #alter_table stalls
+    #alter_table foods
+    #alter_table shops
+    #alter_table items
+
+    # create_shops_foods(db)
+    # create_shops_items(db)
+    # insert_stalls_foods_data(db)
     # insert_shops_items_data(db)
+
+    #drop_column stalls
+    #drop_column foods
 
 def create_parks(db):
     return db.run(
