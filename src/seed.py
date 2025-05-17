@@ -267,3 +267,28 @@ def insert_items_data(db):
             item_name=item_name,
             multi_colour_option=multi_colour_option
         )
+
+def alter_table_add_column(db, table_name, column_name, column_type):
+    return db.run(
+        f"""
+            ALTER TABLE {table_name} 
+                ADD COLUMN {column_name} {column_type} 
+            """
+        )
+def alter_table_set_fk(db, table_name, constarints_name, column_name, reference_table):
+    return db.run(
+        f"""
+            ALTER TABLE {table_name} 
+                ADD CONSTRAINT {constarints_name}
+                FOREIGN KEY ({column_name})
+                REFERENCES {reference_table}({column_name})
+            """
+        )
+
+def alter_table_drop_column(db, table_name, constarints_name, column_name, reference_table):
+    return db.run(
+        f"""
+            ALTER TABLE {table_name} 
+                DROP COLUMN {column_name}
+            """
+        )
