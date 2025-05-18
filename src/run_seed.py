@@ -1,5 +1,5 @@
 from src.seed import seed
-from db.connection import create_con, close_db
+from src.connection import create_con, close_db
 from src.data.index import index as data
 
 db = None
