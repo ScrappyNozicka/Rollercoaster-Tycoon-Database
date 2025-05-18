@@ -18,3 +18,22 @@ def get_parks_data(db):
     )
     parks_data = [dict(zip(columns, row)) for row in raw_parks_data]
     return parks_data
+
+
+def get_rides_data(db):
+    columns = [
+        "ride_id",
+        "ride_name",
+        "ride_type",
+        "year_opened",
+        "park_name",
+        "votes",
+    ]
+    raw_rides_data = db.run(
+        """
+            SELECT *
+            FROM rides;
+            """
+    )
+    rides_data = [dict(zip(columns, row)) for row in raw_rides_data]
+    return rides_data
