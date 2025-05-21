@@ -1,10 +1,11 @@
 # project-02
 
 Database project
-- identify what database am I creating
-- identify tables needed
-- identify data to insert needed
+- identify what database am I creating -- DONE
+- identify tables needed -- DONE
+- identify data to insert needed -- DONE
 - identify general functionality needed
+- functionality to update data for new formatting in tables, ie. we pull the data and replace the columns with park name with park id and use it as connection point
 
 Create database
 - connection.py
