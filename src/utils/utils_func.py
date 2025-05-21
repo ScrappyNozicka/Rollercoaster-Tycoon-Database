@@ -52,3 +52,14 @@ def modify_rides_data(db):
             ride.pop("park_name", None)
 
     return rides_data
+
+# def get_raw_rides_data():
+#     extract data from file
+#     return as dictionary
+
+# def modify_raw_parks_data():
+#     get data from parks
+#     create list of park names alongside park ids
+#     iterate over the rides data
+#     add park id
+#     remove park name
