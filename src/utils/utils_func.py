@@ -1,4 +1,5 @@
 from src.connection import create_con
+# from src.data.rides import rides
 
 db = create_con()
 
@@ -56,6 +57,19 @@ def modify_rides_data(db):
 # def get_raw_rides_data():
 #     extract data from file
 #     return as dictionary
+
+
+# def get_rides_data(rides):
+#     columns = [
+#         "ride_id",
+#         "ride_name",
+#         "ride_type",
+#         "year_opened",
+#         "park_name",
+#         "votes",
+#     ]
+#     rides_data = [dict(zip(columns, row)) for row in rides]
+#     return rides_data
 
 # def modify_raw_parks_data():
 #     get data from parks
