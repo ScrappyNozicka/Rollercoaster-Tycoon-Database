@@ -59,7 +59,7 @@ def modify_rides_data(db):
 #     return as dictionary
 
 
-# def get_rides_data(rides):
+# def get_raw_rides_data(rides):
 #     columns = [
 #         "ride_id",
 #         "ride_name",
@@ -72,8 +72,15 @@ def modify_rides_data(db):
 #     return rides_data
 
 # def modify_raw_parks_data():
-#     get data from parks
-#     create list of park names alongside park ids
-#     iterate over the rides data
-#     add park id
-#     remove park name
+#     rides_data = get_raw_rides_data(rides)
+#     parks_data = get_parks_data(db)
+#     park_name_to_id = {
+#         park["park_name"]: park["park_id"] for park in parks_data
+#     }
+#     for ride in rides_data:
+#         park_name = ride.get("park_name")
+#         if park_name in park_name_to_id:
+#             ride["park_id"] = park_name_to_id[park_name]
+#             ride.pop("park_name", None)
+
+#     return rides_data
