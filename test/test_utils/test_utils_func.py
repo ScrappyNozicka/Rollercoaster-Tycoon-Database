@@ -967,7 +967,7 @@ def test_modify_rides_data(db):
     ]
     assert result == expected
 
-def test_get_raw_rides_data(rides):
+def test_get_raw_rides_data():
     result = get_raw_rides_data(rides)
     expected = [
         {
@@ -1406,7 +1406,7 @@ def test_get_raw_rides_data(rides):
     assert result == expected
 
 
-def test_modify_raw_rides_data(rides, db):
+def test_modify_raw_rides_data(db):
     result = modify_raw_parks_data(rides, db)
     expected = [
         {
