@@ -54,33 +54,29 @@ def modify_rides_data(db):
 
     return rides_data
 
-# def get_raw_rides_data():
-#     extract data from file
-#     return as dictionary
 
+def get_raw_rides_data(rides):
+    columns = [
+        "ride_id",
+        "ride_name",
+        "ride_type",
+        "year_opened",
+        "park_name",
+        "votes",
+    ]
+    rides_data = [dict(zip(columns, row)) for row in rides]
+    return rides_data
 
-# def get_raw_rides_data(rides):
-#     columns = [
-#         "ride_id",
-#         "ride_name",
-#         "ride_type",
-#         "year_opened",
-#         "park_name",
-#         "votes",
-#     ]
-#     rides_data = [dict(zip(columns, row)) for row in rides]
-#     return rides_data
+def modify_raw_parks_data():
+    rides_data = get_raw_rides_data(rides)
+    parks_data = get_parks_data(db)
+    park_name_to_id = {
+        park["park_name"]: park["park_id"] for park in parks_data
+    }
+    for ride in rides_data:
+        park_name = ride.get("park_name")
+        if park_name in park_name_to_id:
+            ride["park_id"] = park_name_to_id[park_name]
+            ride.pop("park_name", None)
 
-# def modify_raw_parks_data():
-#     rides_data = get_raw_rides_data(rides)
-#     parks_data = get_parks_data(db)
-#     park_name_to_id = {
-#         park["park_name"]: park["park_id"] for park in parks_data
-#     }
-#     for ride in rides_data:
-#         park_name = ride.get("park_name")
-#         if park_name in park_name_to_id:
-#             ride["park_id"] = park_name_to_id[park_name]
-#             ride.pop("park_name", None)
-
-#     return rides_data
+    return rides_data
