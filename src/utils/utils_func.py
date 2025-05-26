@@ -67,7 +67,7 @@ def get_raw_rides_data(rides):
     rides_data = [dict(zip(columns, row)) for row in rides]
     return rides_data
 
-def modify_raw_parks_data():
+def modify_raw_parks_data(rides, db):
     rides_data = get_raw_rides_data(rides)
     parks_data = get_parks_data(db)
     park_name_to_id = {
