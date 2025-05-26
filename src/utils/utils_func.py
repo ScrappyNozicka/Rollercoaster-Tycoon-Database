@@ -1,5 +1,5 @@
 from src.connection import create_con
-# from src.data.rides import rides
+from src.data.rides import rides
 
 db = create_con()
 
