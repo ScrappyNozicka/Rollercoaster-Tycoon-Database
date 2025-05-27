@@ -192,7 +192,7 @@ rides = [
         "ride_name": "Stand-up Roller Coaster",
         "ride_type": "Roller Coasters",
         "year_opened": 2015,
-        "park_name": "Evergreen Garden",
+        "park_name": "Evergreen Gardens",
         "votes": 503,
     },
     {
@@ -234,7 +234,7 @@ rides = [
         "ride_name": "Steeplechase",
         "ride_type": "Roller Coasters",
         "year_opened": 2017,
-        "park_name": "Evergreen Garden",
+        "park_name": "Evergreen Gardens",
         "votes": 927,
     },
     {

@@ -1,4 +1,5 @@
 from src.connection import create_con, close_db
+from src.utils.utils_func import modify_raw_parks_data
 
 from src.data.parks import parks
 from src.data.rides import rides
@@ -29,6 +30,10 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     create_foods(db)
     create_shops(db)
     create_items(db)
+
+    alter_table_add_column(db, table_name="rides", column_name="park_id", column_type="INT NOT NULL")
+    alter_table_set_fk(db, table_name="rides", constarints_name="fk_rides_name", column_name="park_id", reference_table="parks")
+    alter_table_drop_column(db, table_name="rides", column_name="park_name")
 
     insert_parks_data(db)
     insert_rides_data(db)
@@ -101,25 +106,26 @@ def create_rides(db):
         )
 
 def insert_rides_data(db):
+    raw_rides_data = modify_raw_parks_data(rides, db)
     insert_query = """
     INSERT INTO rides
-    (ride_name, ride_type, year_opened, park_name, votes)
+    (ride_name, ride_type, year_opened, votes, park_id)
     VALUES
-    (:ride_name, :ride_type, :year_opened, :park_name, :votes)
+    (:ride_name, :ride_type, :year_opened, :votes, :park_id)
     """
-    for ride in rides:
+    for ride in raw_rides_data:
         ride_name = ride["ride_name"]
         ride_type = ride["ride_type"]
         year_opened = ride["year_opened"]
-        park_name = ride["park_name"]
         votes = ride["votes"]
+        park_id = ride["park_id"]
         db.run(
             insert_query,
             ride_name=ride_name,
             ride_type=ride_type,
             year_opened=year_opened,
-            park_name=park_name,
-            votes=votes
+            votes=votes,
+            park_id=park_id
         )
 
 def create_other_fac(db):
