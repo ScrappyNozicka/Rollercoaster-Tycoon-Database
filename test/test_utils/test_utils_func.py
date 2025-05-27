@@ -2,8 +2,7 @@ from src.utils.utils_func import (
     get_parks_data,
     get_rides_data,
     modify_rides_data,
-    get_raw_rides_data,
-    modify_raw_parks_data
+    modify_raw_parks_data,
 )
 import pytest
 from src.seed import seed
@@ -967,450 +966,11 @@ def test_modify_rides_data(db):
     ]
     assert result == expected
 
-def test_get_raw_rides_data():
-    result = get_raw_rides_data(rides)
-    expected = [
-        {
-            "ride_id": 1,
-            "ride_name": "Steam Trains",
-            "ride_type": "Transport Rides",
-            "year_opened": 2005,
-            "park_name": "Dynamite Dunes",
-            "votes": 104,
-        },
-        {
-            "ride_id": 2,
-            "ride_name": "Small Monorail Cars",
-            "ride_type": "Transport Rides",
-            "year_opened": 2016,
-            "park_name": "Trinity Islands",
-            "votes": 749,
-        },
-        {
-            "ride_id": 3,
-            "ride_name": "Large Monorail Train",
-            "ride_type": "Transport Rides",
-            "year_opened": 2009,
-            "park_name": "Evergreen Gardens",
-            "votes": 194,
-        },
-        {
-            "ride_id": 4,
-            "ride_name": "Chairlift Cars",
-            "ride_type": "Transport Rides",
-            "year_opened": 2023,
-            "park_name": "White Water Park",
-            "votes": 438,
-        },
-        {
-            "ride_id": 5,
-            "ride_name": "Haunted House",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2000,
-            "park_name": "Dynamite Dunes",
-            "votes": 84,
-        },
-        {
-            "ride_id": 6,
-            "ride_name": "Ferris Wheel",
-            "ride_type": "Gentle Rides",
-            "year_opened": 1999,
-            "park_name": "Forest Frontiers",
-            "votes": 840,
-        },
-        {
-            "ride_id": 7,
-            "ride_name": "Hedge Maze",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2009,
-            "park_name": "Evergreen Gardens",
-            "votes": 295,
-        },
-        {
-            "ride_id": 8,
-            "ride_name": "Merry-Go-Round",
-            "ride_type": "Gentle Rides",
-            "year_opened": 1999,
-            "park_name": "Forest Frontiers",
-            "votes": 106,
-        },
-        {
-            "ride_id": 9,
-            "ride_name": "Observation Tower",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2003,
-            "park_name": "Leafy Lake",
-            "votes": 720,
-        },
-        {
-            "ride_id": 10,
-            "ride_name": "Sportscars",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2013,
-            "park_name": "Bumbly Beach",
-            "votes": 1058,
-        },
-        {
-            "ride_id": 11,
-            "ride_name": "Racing Cars",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2006,
-            "park_name": "Diamond Heights",
-            "votes": 20,
-        },
-        {
-            "ride_id": 12,
-            "ride_name": "Pickup Trucks",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2015,
-            "park_name": "Trinity Islands",
-            "votes": 60,
-        },
-        {
-            "ride_id": 13,
-            "ride_name": "Cheshire Cats",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2018,
-            "park_name": "Katie's Dreamland",
-            "votes": 306,
-        },
-        {
-            "ride_id": 14,
-            "ride_name": "Spiral Slide",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2021,
-            "park_name": "Pokey Park",
-            "votes": 481,
-        },
-        {
-            "ride_id": 15,
-            "ride_name": "Dodgems",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2023,
-            "park_name": "White Water Park",
-            "votes": 82,
-        },
-        {
-            "ride_id": 16,
-            "ride_name": "Space Rings",
-            "ride_type": "Gentle Rides",
-            "year_opened": 2010,
-            "park_name": "Evergreen Gardens",
-            "votes": 1068,
-        },
-        {
-            "ride_id": 17,
-            "ride_name": "Wooden Roller Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 1999,
-            "park_name": "Forest Frontiers",
-            "votes": 2059,
-        },
-        {
-            "ride_id": 18,
-            "ride_name": "Reversed Wooden Roller Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2001,
-            "park_name": "Dynamite Dunes",
-            "votes": 1947,
-        },
-        {
-            "ride_id": 19,
-            "ride_name": "Wooden Wild Mouse",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2000,
-            "park_name": "Forest Frontiers",
-            "votes": 1396,
-        },
-        {
-            "ride_id": 20,
-            "ride_name": "Wooden Wild Mine Ride",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2000,
-            "park_name": "Dynamite Dunes",
-            "votes": 1294,
-        },
-        {
-            "ride_id": 21,
-            "ride_name": "Ladybird Trains",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2003,
-            "park_name": "Leafy Lake",
-            "votes": 857,
-        },
-        {
-            "ride_id": 22,
-            "ride_name": "Log Trains",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2023,
-            "park_name": "White Water Park",
-            "votes": 920,
-        },
-        {
-            "ride_id": 23,
-            "ride_name": "Rocket Cars",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2017,
-            "park_name": "Diamond Heights",
-            "votes": 1503,
-        },
-        {
-            "ride_id": 24,
-            "ride_name": "Spinning Cars",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2003,
-            "park_name": "Leafy Lake",
-            "votes": 1058,
-        },
-        {
-            "ride_id": 25,
-            "ride_name": "Mine Train Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2015,
-            "park_name": "Diamond Heights",
-            "votes": 1302,
-        },
-        {
-            "ride_id": 26,
-            "ride_name": "Looping Roller Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2015,
-            "park_name": "Trinity Islands",
-            "votes": 1956,
-        },
-        {
-            "ride_id": 27,
-            "ride_name": "Backwards Roller Coaster Train",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2024,
-            "park_name": "White Water Park",
-            "votes": 2057,
-        },
-        {
-            "ride_id": 28,
-            "ride_name": "Stand-up Roller Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2015,
-            "park_name": "Evergreen Garden",
-            "votes": 503,
-        },
-        {
-            "ride_id": 29,
-            "ride_name": "Corkscrew Roller Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2013,
-            "park_name": "Bumbly Beach",
-            "votes": 1734,
-        },
-        {
-            "ride_id": 30,
-            "ride_name": "Suspended Swinging Cars",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2013,
-            "park_name": "Diamond Heights",
-            "votes": 2056,
-        },
-        {
-            "ride_id": 31,
-            "ride_name": "Suspended Swinging Airplane Cars",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2016,
-            "park_name": "Katie's Dreamland",
-            "votes": 2104,
-        },
-        {
-            "ride_id": 32,
-            "ride_name": "Mini Suspended Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2015,
-            "park_name": "Trinity Islands",
-            "votes": 1845,
-        },
-        {
-            "ride_id": 33,
-            "ride_name": "Mini Suspended Flying Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2020,
-            "park_name": "Trinity Islands",
-            "votes": 1003,
-        },
-        {
-            "ride_id": 34,
-            "ride_name": "Steeplechase",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2017,
-            "park_name": "Evergreen Garden",
-            "votes": 927,
-        },
-        {
-            "ride_id": 35,
-            "ride_name": "Motorbike Races",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2014,
-            "park_name": "Bumbly Beach",
-            "votes": 1720,
-        },
-        {
-            "ride_id": 36,
-            "ride_name": "Bobsleigh Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2021,
-            "park_name": "Pokey Park",
-            "votes": 1940,
-        },
-        {
-            "ride_id": 37,
-            "ride_name": "Reverse Freefall Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2022,
-            "park_name": "Trinity Islands",
-            "votes": 2312,
-        },
-        {
-            "ride_id": 38,
-            "ride_name": "Vertical Drop Roller Coaster",
-            "ride_type": "Roller Coasters",
-            "year_opened": 2021,
-            "park_name": "Pokey Park",
-            "votes": 1840,
-        },
-        {
-            "ride_id": 39,
-            "ride_name": "Twist",
-            "ride_type": "Thrill Rides",
-            "year_opened": 2000,
-            "park_name": "Dynamite Dunes",
-            "votes": 48,
-        },
-        {
-            "ride_id": 40,
-            "ride_name": "Launched Freefall",
-            "ride_type": "Thrill Rides",
-            "year_opened": 2004,
-            "park_name": "Leafy Lake",
-            "votes": 375,
-        },
-        {
-            "ride_id": 41,
-            "ride_name": "Pirate Ship",
-            "ride_type": "Thrill Rides",
-            "year_opened": 1999,
-            "park_name": "Forest Frontiers",
-            "votes": 857,
-        },
-        {
-            "ride_id": 42,
-            "ride_name": "Go Karts",
-            "ride_type": "Thrill Rides",
-            "year_opened": 2011,
-            "park_name": "Evergreen Gardens",
-            "votes": 127,
-        },
-        {
-            "ride_id": 43,
-            "ride_name": "Swinging Inverter Ship",
-            "ride_type": "Thrill Rides",
-            "year_opened": 2021,
-            "park_name": "Pokey Park",
-            "votes": 386,
-        },
-        {
-            "ride_id": 44,
-            "ride_name": "Motion Simulator",
-            "ride_type": "Thrill Rides",
-            "year_opened": 2016,
-            "park_name": "Bumbly Beach",
-            "votes": 285,
-        },
-        {
-            "ride_id": 45,
-            "ride_name": "3D Cinema",
-            "ride_type": "Thrill Rides",
-            "year_opened": 2019,
-            "park_name": "Katie's Dreamland",
-            "votes": 539,
-        },
-        {
-            "ride_id": 46,
-            "ride_name": "Top Spin",
-            "ride_type": "Thrill Rides",
-            "year_opened": 2006,
-            "park_name": "Diamond Heights",
-            "votes": 239,
-        },
-        {
-            "ride_id": 47,
-            "ride_name": "Dinghy Slide",
-            "ride_type": "Water Rides",
-            "year_opened": 2003,
-            "park_name": "Leafy Lake",
-            "votes": 583,
-        },
-        {
-            "ride_id": 48,
-            "ride_name": "Log Flume",
-            "ride_type": "Water Rides",
-            "year_opened": 2007,
-            "park_name": "Diamond Heights",
-            "votes": 739,
-        },
-        {
-            "ride_id": 49,
-            "ride_name": "River Rapids",
-            "ride_type": "Water Rides",
-            "year_opened": 2024,
-            "park_name": "White Water Park",
-            "votes": 920,
-        },
-        {
-            "ride_id": 50,
-            "ride_name": "Rowing Boats",
-            "ride_type": "Water Rides",
-            "year_opened": 2009,
-            "park_name": "Evergreen Gardens",
-            "votes": 392,
-        },
-        {
-            "ride_id": 51,
-            "ride_name": "Swans",
-            "ride_type": "Water Rides",
-            "year_opened": 2013,
-            "park_name": "Bumbly Beach",
-            "votes": 295,
-        },
-        {
-            "ride_id": 52,
-            "ride_name": "Canoes",
-            "ride_type": "Water Rides",
-            "year_opened": 2015,
-            "park_name": "Trinity Islands",
-            "votes": 21,
-        },
-        {
-            "ride_id": 53,
-            "ride_name": "Bumper Boats",
-            "ride_type": "Water Rides",
-            "year_opened": 2018,
-            "park_name": "Katie's Dreamland",
-            "votes": 520,
-        },
-        {
-            "ride_id": 54,
-            "ride_name": "Water Tricycles",
-            "ride_type": "Water Rides",
-            "year_opened": 2023,
-            "park_name": "Pokey Park",
-            "votes": 133,
-        },
-    ]
-    assert result == expected
-
 
 def test_modify_raw_rides_data(db):
     result = modify_raw_parks_data(rides, db)
     expected = [
         {
-            "ride_id": 1,
             "ride_name": "Steam Trains",
             "ride_type": "Transport Rides",
             "year_opened": 2005,
@@ -1418,7 +978,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 2,
         },
         {
-            "ride_id": 2,
             "ride_name": "Small Monorail Cars",
             "ride_type": "Transport Rides",
             "year_opened": 2016,
@@ -1426,7 +985,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 7,
         },
         {
-            "ride_id": 3,
             "ride_name": "Large Monorail Train",
             "ride_type": "Transport Rides",
             "year_opened": 2009,
@@ -1434,7 +992,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 5,
         },
         {
-            "ride_id": 4,
             "ride_name": "Chairlift Cars",
             "ride_type": "Transport Rides",
             "year_opened": 2023,
@@ -1442,7 +999,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 10,
         },
         {
-            "ride_id": 5,
             "ride_name": "Haunted House",
             "ride_type": "Gentle Rides",
             "year_opened": 2000,
@@ -1450,7 +1006,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 2,
         },
         {
-            "ride_id": 6,
             "ride_name": "Ferris Wheel",
             "ride_type": "Gentle Rides",
             "year_opened": 1999,
@@ -1458,7 +1013,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 1,
         },
         {
-            "ride_id": 7,
             "ride_name": "Hedge Maze",
             "ride_type": "Gentle Rides",
             "year_opened": 2009,
@@ -1466,7 +1020,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 5,
         },
         {
-            "ride_id": 8,
             "ride_name": "Merry-Go-Round",
             "ride_type": "Gentle Rides",
             "year_opened": 1999,
@@ -1474,7 +1027,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 1,
         },
         {
-            "ride_id": 9,
             "ride_name": "Observation Tower",
             "ride_type": "Gentle Rides",
             "year_opened": 2003,
@@ -1482,7 +1034,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 3,
         },
         {
-            "ride_id": 10,
             "ride_name": "Sportscars",
             "ride_type": "Gentle Rides",
             "year_opened": 2013,
@@ -1490,7 +1041,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 6,
         },
         {
-            "ride_id": 11,
             "ride_name": "Racing Cars",
             "ride_type": "Gentle Rides",
             "year_opened": 2006,
@@ -1498,7 +1048,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 4,
         },
         {
-            "ride_id": 12,
             "ride_name": "Pickup Trucks",
             "ride_type": "Gentle Rides",
             "year_opened": 2015,
@@ -1506,7 +1055,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 7,
         },
         {
-            "ride_id": 13,
             "ride_name": "Cheshire Cats",
             "ride_type": "Gentle Rides",
             "year_opened": 2018,
@@ -1514,7 +1062,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 8,
         },
         {
-            "ride_id": 14,
             "ride_name": "Spiral Slide",
             "ride_type": "Gentle Rides",
             "year_opened": 2021,
@@ -1522,7 +1069,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 9,
         },
         {
-            "ride_id": 15,
             "ride_name": "Dodgems",
             "ride_type": "Gentle Rides",
             "year_opened": 2023,
@@ -1530,7 +1076,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 10,
         },
         {
-            "ride_id": 16,
             "ride_name": "Space Rings",
             "ride_type": "Gentle Rides",
             "year_opened": 2010,
@@ -1538,7 +1083,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 5,
         },
         {
-            "ride_id": 17,
             "ride_name": "Wooden Roller Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 1999,
@@ -1546,7 +1090,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 1,
         },
         {
-            "ride_id": 18,
             "ride_name": "Reversed Wooden Roller Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2001,
@@ -1554,7 +1097,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 2,
         },
         {
-            "ride_id": 19,
             "ride_name": "Wooden Wild Mouse",
             "ride_type": "Roller Coasters",
             "year_opened": 2000,
@@ -1562,7 +1104,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 1,
         },
         {
-            "ride_id": 20,
             "ride_name": "Wooden Wild Mine Ride",
             "ride_type": "Roller Coasters",
             "year_opened": 2000,
@@ -1570,7 +1111,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 2,
         },
         {
-            "ride_id": 21,
             "ride_name": "Ladybird Trains",
             "ride_type": "Roller Coasters",
             "year_opened": 2003,
@@ -1578,7 +1118,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 3,
         },
         {
-            "ride_id": 22,
             "ride_name": "Log Trains",
             "ride_type": "Roller Coasters",
             "year_opened": 2023,
@@ -1586,7 +1125,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 10,
         },
         {
-            "ride_id": 23,
             "ride_name": "Rocket Cars",
             "ride_type": "Roller Coasters",
             "year_opened": 2017,
@@ -1594,7 +1132,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 4,
         },
         {
-            "ride_id": 24,
             "ride_name": "Spinning Cars",
             "ride_type": "Roller Coasters",
             "year_opened": 2003,
@@ -1602,7 +1139,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 3,
         },
         {
-            "ride_id": 25,
             "ride_name": "Mine Train Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2015,
@@ -1610,7 +1146,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 4,
         },
         {
-            "ride_id": 26,
             "ride_name": "Looping Roller Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2015,
@@ -1618,7 +1153,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 7,
         },
         {
-            "ride_id": 27,
             "ride_name": "Backwards Roller Coaster Train",
             "ride_type": "Roller Coasters",
             "year_opened": 2024,
@@ -1626,7 +1160,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 10,
         },
         {
-            "ride_id": 28,
             "ride_name": "Stand-up Roller Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2015,
@@ -1634,7 +1167,6 @@ def test_modify_raw_rides_data(db):
             "votes": 503,
         },
         {
-            "ride_id": 29,
             "ride_name": "Corkscrew Roller Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2013,
@@ -1642,7 +1174,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 6,
         },
         {
-            "ride_id": 30,
             "ride_name": "Suspended Swinging Cars",
             "ride_type": "Roller Coasters",
             "year_opened": 2013,
@@ -1650,7 +1181,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 4,
         },
         {
-            "ride_id": 31,
             "ride_name": "Suspended Swinging Airplane Cars",
             "ride_type": "Roller Coasters",
             "year_opened": 2016,
@@ -1658,7 +1188,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 8,
         },
         {
-            "ride_id": 32,
             "ride_name": "Mini Suspended Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2015,
@@ -1666,7 +1195,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 7,
         },
         {
-            "ride_id": 33,
             "ride_name": "Mini Suspended Flying Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2020,
@@ -1674,7 +1202,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 7,
         },
         {
-            "ride_id": 34,
             "ride_name": "Steeplechase",
             "ride_type": "Roller Coasters",
             "year_opened": 2017,
@@ -1682,7 +1209,6 @@ def test_modify_raw_rides_data(db):
             "votes": 927,
         },
         {
-            "ride_id": 35,
             "ride_name": "Motorbike Races",
             "ride_type": "Roller Coasters",
             "year_opened": 2014,
@@ -1690,7 +1216,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 6,
         },
         {
-            "ride_id": 36,
             "ride_name": "Bobsleigh Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2021,
@@ -1698,7 +1223,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 9,
         },
         {
-            "ride_id": 37,
             "ride_name": "Reverse Freefall Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2022,
@@ -1706,7 +1230,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 7,
         },
         {
-            "ride_id": 38,
             "ride_name": "Vertical Drop Roller Coaster",
             "ride_type": "Roller Coasters",
             "year_opened": 2021,
@@ -1714,7 +1237,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 9,
         },
         {
-            "ride_id": 39,
             "ride_name": "Twist",
             "ride_type": "Thrill Rides",
             "year_opened": 2000,
@@ -1722,7 +1244,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 2,
         },
         {
-            "ride_id": 40,
             "ride_name": "Launched Freefall",
             "ride_type": "Thrill Rides",
             "year_opened": 2004,
@@ -1730,7 +1251,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 3,
         },
         {
-            "ride_id": 41,
             "ride_name": "Pirate Ship",
             "ride_type": "Thrill Rides",
             "year_opened": 1999,
@@ -1738,7 +1258,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 1,
         },
         {
-            "ride_id": 42,
             "ride_name": "Go Karts",
             "ride_type": "Thrill Rides",
             "year_opened": 2011,
@@ -1746,7 +1265,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 5,
         },
         {
-            "ride_id": 43,
             "ride_name": "Swinging Inverter Ship",
             "ride_type": "Thrill Rides",
             "year_opened": 2021,
@@ -1754,7 +1272,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 9,
         },
         {
-            "ride_id": 44,
             "ride_name": "Motion Simulator",
             "ride_type": "Thrill Rides",
             "year_opened": 2016,
@@ -1762,7 +1279,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 6,
         },
         {
-            "ride_id": 45,
             "ride_name": "3D Cinema",
             "ride_type": "Thrill Rides",
             "year_opened": 2019,
@@ -1770,7 +1286,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 8,
         },
         {
-            "ride_id": 46,
             "ride_name": "Top Spin",
             "ride_type": "Thrill Rides",
             "year_opened": 2006,
@@ -1778,7 +1293,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 4,
         },
         {
-            "ride_id": 47,
             "ride_name": "Dinghy Slide",
             "ride_type": "Water Rides",
             "year_opened": 2003,
@@ -1786,7 +1300,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 3,
         },
         {
-            "ride_id": 48,
             "ride_name": "Log Flume",
             "ride_type": "Water Rides",
             "year_opened": 2007,
@@ -1794,7 +1307,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 4,
         },
         {
-            "ride_id": 49,
             "ride_name": "River Rapids",
             "ride_type": "Water Rides",
             "year_opened": 2024,
@@ -1802,7 +1314,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 10,
         },
         {
-            "ride_id": 50,
             "ride_name": "Rowing Boats",
             "ride_type": "Water Rides",
             "year_opened": 2009,
@@ -1810,7 +1321,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 5,
         },
         {
-            "ride_id": 51,
             "ride_name": "Swans",
             "ride_type": "Water Rides",
             "year_opened": 2013,
@@ -1818,7 +1328,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 6,
         },
         {
-            "ride_id": 52,
             "ride_name": "Canoes",
             "ride_type": "Water Rides",
             "year_opened": 2015,
@@ -1826,7 +1335,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 7,
         },
         {
-            "ride_id": 53,
             "ride_name": "Bumper Boats",
             "ride_type": "Water Rides",
             "year_opened": 2018,
@@ -1834,7 +1342,6 @@ def test_modify_raw_rides_data(db):
             "park_id": 8,
         },
         {
-            "ride_id": 54,
             "ride_name": "Water Tricycles",
             "ride_type": "Water Rides",
             "year_opened": 2023,
