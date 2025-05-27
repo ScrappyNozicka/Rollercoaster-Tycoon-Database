@@ -285,7 +285,7 @@ def alter_table_set_fk(db, table_name, constarints_name, column_name, reference_
             """
         )
 
-def alter_table_drop_column(db, table_name, constarints_name, column_name, reference_table):
+def alter_table_drop_column(db, table_name, column_name):
     return db.run(
         f"""
             ALTER TABLE {table_name} 

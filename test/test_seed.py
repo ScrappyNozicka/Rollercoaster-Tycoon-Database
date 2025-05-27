@@ -86,7 +86,7 @@ def test_rides_table_has_ride_id_column_as_serial_primary_key(db):
     assert  expected[0][2] == "nextval('rides_ride_id_seq'::regclass)" 
 
 def test_rides_table_has_ride_name_column(db):
-    """Tests if rides table has park name column"""
+    """Tests if rides table has ride name column"""
     test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'rides' \
@@ -112,14 +112,14 @@ def test_rides_table_has_year_opened_column(db):
     expected = db.run(test_query)
     assert  expected == [["year_opened"]]
 
-def test_rides_table_has_park_name_column(db):
-    """Tests if rides table has park name column"""
+def test_rides_table_has_park_id_column(db):
+    """Tests if rides table has park id column"""
     test_query = "SELECT column_name \
                   FROM information_schema.columns \
                   WHERE table_name = 'rides' \
-                  AND column_name = 'park_name';"
+                  AND column_name = 'park_id';"
     expected = db.run(test_query)
-    assert  expected == [["park_name"]]
+    assert  expected == [["park_id"]]
 
 def test_rides_table_has_votes_column(db):
     """Tests if rides table has votes column"""
