@@ -34,6 +34,25 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     alter_table_add_column(db, table_name="rides", column_name="park_id", column_type="INT NOT NULL")
     alter_table_set_fk(db, table_name="rides", constarints_name="fk_rides_name", column_name="park_id", reference_table="parks")
     alter_table_drop_column(db, table_name="rides", column_name="park_name")
+    # alter_table_add_column(db, table_name="other_fac", column_name="park_id", column_type="INT NOT NULL")
+    # alter_table_set_fk(db, table_name="other_fac", constarints_name="fk_other_fac_name", column_name="park_id", reference_table="parks")
+    # alter_table_drop_column(db, table_name="other_fac", column_name="park_name")
+    # alter_table_add_column(db, table_name="stalls", column_name="park_id", column_type="INT NOT NULL")
+    # alter_table_set_fk(db, table_name="stalls", constarints_name="fk_stalls_name", column_name="park_id", reference_table="parks")
+    # alter_table_drop_column(db, table_name="stalls", column_name="park_name")
+    # alter_table_add_column(db, table_name="shops", column_name="park_id", column_type="INT NOT NULL")
+    # alter_table_set_fk(db, table_name="shops", constarints_name="fk_shops_name", column_name="park_id", reference_table="parks")
+    # alter_table_drop_column(db, table_name="shops", column_name="park_name")
+
+    #alter_table foods
+    # alter_table_add_column(db, table_name="other_fac", column_name="park_id", column_type="INT NOT NULL")
+    # alter_table_set_fk(db, table_name="other_fac", constarints_name="fk_other_fac_name", column_name="park_id", reference_table="parks")
+    # alter_table_drop_column(db, table_name="other_fac", column_name="park_name")
+
+    #alter_table items
+    # alter_table_add_column(db, table_name="other_fac", column_name="park_id", column_type="INT NOT NULL")
+    # alter_table_set_fk(db, table_name="other_fac", constarints_name="fk_other_fac_name", column_name="park_id", reference_table="parks")
+    # alter_table_drop_column(db, table_name="other_fac", column_name="park_name")
 
     insert_parks_data(db)
     insert_rides_data(db)
@@ -42,13 +61,6 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     insert_foods_data(db)
     insert_shops_data(db)
     insert_items_data(db)
-
-    #alter_table rides
-    #alter_table other_fac
-    #alter_table stalls
-    #alter_table foods
-    #alter_table shops
-    #alter_table items
 
     # create_shops_foods(db)
     # create_shops_items(db)
