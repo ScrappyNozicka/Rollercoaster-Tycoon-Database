@@ -31,12 +31,22 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     create_shops(db)
     create_items(db)
 
+    # insert_parks_data(db)
+    # insert_rides_data(db)
+    # insert_other_fac_data(db)
+    # insert_stalls_data(db)
+    # insert_foods_data(db)
+    # insert_shops_data(db)
+    # insert_items_data(db)
+
     alter_table_add_column(db, table_name="rides", column_name="park_id", column_type="INT NOT NULL")
     alter_table_set_fk(db, table_name="rides", constarints_name="fk_rides_name", column_name="park_id", reference_table="parks")
     alter_table_drop_column(db, table_name="rides", column_name="park_name")
+
     # alter_table_add_column(db, table_name="other_fac", column_name="park_id", column_type="INT NOT NULL")
     # alter_table_set_fk(db, table_name="other_fac", constarints_name="fk_other_fac_name", column_name="park_id", reference_table="parks")
     # alter_table_drop_column(db, table_name="other_fac", column_name="park_name")
+
     # alter_table_add_column(db, table_name="stalls", column_name="park_id", column_type="INT NOT NULL")
     # alter_table_set_fk(db, table_name="stalls", constarints_name="fk_stalls_name", column_name="park_id", reference_table="parks")
     # alter_table_drop_column(db, table_name="stalls", column_name="park_name")
