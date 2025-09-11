@@ -1,5 +1,5 @@
 from src.utils.utils_func import (
-    modify_raw_parks_data,
+    modify_raw_rides_data,
 )
 import pytest
 from src.seed import seed
@@ -20,7 +20,7 @@ def db():
 
 
 def test_modify_raw_rides_data(db):
-    result = modify_raw_parks_data(rides, db)
+    result = modify_raw_rides_data(rides, db)
     expected = [
         {
             "ride_name": "Steam Trains",

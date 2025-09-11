@@ -1,5 +1,5 @@
 from src.connection import create_con, close_db
-from src.utils.utils_func import modify_raw_parks_data
+from src.utils.utils_func import modify_raw_rides_data
 
 from src.data.parks import parks
 from src.data.rides import rides
@@ -128,12 +128,12 @@ def create_rides(db):
         )
 
 def insert_rides_data(db):
-    raw_rides_data = modify_raw_parks_data(rides, db)
+    raw_rides_data = modify_raw_rides_data(rides, db)
     insert_query = """
     INSERT INTO rides
     (ride_name, ride_type, year_opened, votes, park_id)
     VALUES
-    (:ride_name, :ride_type, :year_opened, :votes, :park_id)
+    (:ride_name, :ride_type, :year_opened,:votes, :park_id)
     """
     for ride in raw_rides_data:
         ride_name = ride["ride_name"]
@@ -303,6 +303,17 @@ def alter_table_add_column(db, table_name, column_name, column_type):
                 ADD COLUMN {column_name} {column_type} 
             """
         )
+
+def populate_foreign_key(db, source_table, target_table, fk_column, match_column):
+    return db.run(
+        f"""
+            UPDATE {target_table} t
+                SET {fk_column} = s.{fk_column}
+                FROM {source_table} s
+                WHERE t.{match_column} = s.{match_column}
+    """)
+
+
 def alter_table_set_fk(db, table_name, constarints_name, column_name, reference_table):
     return db.run(
         f"""

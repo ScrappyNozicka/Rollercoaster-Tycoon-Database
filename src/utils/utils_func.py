@@ -20,7 +20,7 @@ def get_parks_data(db):
     return parks_data
 
 
-def modify_raw_parks_data(rides, db):
+def modify_raw_rides_data(rides, db):
     parks_data = get_parks_data(db)
     park_name_to_id = {
         park["park_name"]: park["park_id"] for park in parks_data
