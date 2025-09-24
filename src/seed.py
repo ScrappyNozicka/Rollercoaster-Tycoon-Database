@@ -44,6 +44,27 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     alter_table_set_fk(db, table_name="rides", constarints_name="fk_rides_name", column_name="park_id", reference_table="parks")
     alter_table_drop_column(db, table_name="rides", column_name="park_name")
 
+    # alter_table_add_column(db, table_name="other_fac", column_name="park_id", column_type="INT")
+    # populate_foreign_key(db, source_table="parks", target_table="other_fac", fk_column="park_id", match_column="park_name")
+    # alter_table_set_fk(db, table_name="other_fac", constarints_name="fk_other_fac_name", column_name="park_id", reference_table="parks")
+    # alter_table_drop_column(db, table_name="other_fac", column_name="park_name")
+
+    # alter_table_add_column(db, table_name="stalls", column_name="park_id", column_type="INT")
+    # populate_foreign_key(db, source_table="parks", target_table="stalls", fk_column="park_id", match_column="park_name")
+    # alter_table_set_fk(db, table_name="stalls", constarints_name="fk_stalls_name", column_name="park_id", reference_table="parks")
+    # alter_table_drop_column(db, table_name="stalls", column_name="park_name")
+
+    # alter_table_add_column(db, table_name="shops", column_name="park_id", column_type="INT")
+    # populate_foreign_key(db, source_table="parks", target_table="shops", fk_column="park_id", match_column="park_name")
+    # alter_table_set_fk(db, table_name="shops", constarints_name="fk_shops_name", column_name="park_id", reference_table="parks")
+    # alter_table_drop_column(db, table_name="shops", column_name="park_name")
+
+
+
+
+
+
+
     # create_shops_foods(db)
     # create_shops_items(db)
     # insert_stalls_foods_data(db)
