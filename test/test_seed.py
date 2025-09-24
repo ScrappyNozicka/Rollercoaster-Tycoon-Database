@@ -148,14 +148,14 @@ def test_other_fac_has__fac_id_column_as_serial_primary_key(db):
     assert  expected[0][1] == "integer"
     assert  expected[0][2] == "nextval('other_fac_fac_id_seq'::regclass)" 
 
-def test_other_fac_table_has_park_name_column(db):
-    """Tests if other facilities table has park name column"""
+def test_other_fac_table_has_park_id_column(db):
+    """Tests if other facilities table has park id column"""
     test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'other_fac' \
-                  AND column_name = 'park_name';"
+                  AND column_name = 'park_id';"
     expected = db.run(test_query)
-    assert  expected == [["park_name", "character varying", None]]
+    assert  expected == [["park_id", "integer", None]]
 
 def test_other_fac_table_has_ride_type_column(db):
     """Tests if other facilities table has facility name column"""
@@ -193,14 +193,14 @@ def test_stalls_table_has_stall_name_column(db):
     expected = db.run(test_query)
     assert  expected == [["stall_name", "character varying", None]]
 
-def test_stalls_table_has_park_name_column(db):
-    """Tests if stalls table has park name column"""
-    test_query = "SELECT column_name \
+def test_stalls_table_has_park_id_column(db):
+    """Tests if stalls table has park id column"""
+    test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'stalls' \
-                  AND column_name = 'park_name';"
+                  AND column_name = 'park_id';"
     expected = db.run(test_query)
-    assert  expected == [["park_name"]]
+    assert  expected == [["park_id", "integer", None]]
 
 def test_stalls_table_has_food_served_column(db):
     """Tests if stalls table has food served column"""
@@ -330,14 +330,14 @@ def test_shops_table_has_shop_name_column(db):
     expected = db.run(test_query)
     assert  expected == [["shop_name", "character varying", None]]
 
-def test_shops_table_has_park_name_column(db):
-    """Tests if shops table has park name column"""
-    test_query = "SELECT column_name \
+def test_shops_table_has_park_id_column(db):
+    """Tests if shops table has park id column"""
+    test_query = "SELECT column_name, data_type, column_default \
                   FROM information_schema.columns \
                   WHERE table_name = 'shops' \
-                  AND column_name = 'park_name';"
+                  AND column_name = 'park_id';"
     expected = db.run(test_query)
-    assert  expected == [["park_name"]]
+    assert  expected == [['park_id', 'integer', None]] 
 
 def test_shops_table_has_items_sold_column(db):
     """Tests if shops table has items sold column"""
