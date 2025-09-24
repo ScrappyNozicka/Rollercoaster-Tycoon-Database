@@ -31,39 +31,6 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     create_shops(db)
     create_items(db)
 
-    # insert_parks_data(db)
-    # insert_rides_data(db)
-    # insert_other_fac_data(db)
-    # insert_stalls_data(db)
-    # insert_foods_data(db)
-    # insert_shops_data(db)
-    # insert_items_data(db)
-
-    alter_table_add_column(db, table_name="rides", column_name="park_id", column_type="INT NOT NULL")
-    alter_table_set_fk(db, table_name="rides", constarints_name="fk_rides_name", column_name="park_id", reference_table="parks")
-    alter_table_drop_column(db, table_name="rides", column_name="park_name")
-
-    # alter_table_add_column(db, table_name="other_fac", column_name="park_id", column_type="INT NOT NULL")
-    # alter_table_set_fk(db, table_name="other_fac", constarints_name="fk_other_fac_name", column_name="park_id", reference_table="parks")
-    # alter_table_drop_column(db, table_name="other_fac", column_name="park_name")
-
-    # alter_table_add_column(db, table_name="stalls", column_name="park_id", column_type="INT NOT NULL")
-    # alter_table_set_fk(db, table_name="stalls", constarints_name="fk_stalls_name", column_name="park_id", reference_table="parks")
-    # alter_table_drop_column(db, table_name="stalls", column_name="park_name")
-    # alter_table_add_column(db, table_name="shops", column_name="park_id", column_type="INT NOT NULL")
-    # alter_table_set_fk(db, table_name="shops", constarints_name="fk_shops_name", column_name="park_id", reference_table="parks")
-    # alter_table_drop_column(db, table_name="shops", column_name="park_name")
-
-    #alter_table foods
-    # alter_table_add_column(db, table_name="other_fac", column_name="park_id", column_type="INT NOT NULL")
-    # alter_table_set_fk(db, table_name="other_fac", constarints_name="fk_other_fac_name", column_name="park_id", reference_table="parks")
-    # alter_table_drop_column(db, table_name="other_fac", column_name="park_name")
-
-    #alter_table items
-    # alter_table_add_column(db, table_name="other_fac", column_name="park_id", column_type="INT NOT NULL")
-    # alter_table_set_fk(db, table_name="other_fac", constarints_name="fk_other_fac_name", column_name="park_id", reference_table="parks")
-    # alter_table_drop_column(db, table_name="other_fac", column_name="park_name")
-
     insert_parks_data(db)
     insert_rides_data(db)
     insert_other_fac_data(db)
@@ -71,6 +38,11 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     insert_foods_data(db)
     insert_shops_data(db)
     insert_items_data(db)
+
+    alter_table_add_column(db, table_name="rides", column_name="park_id", column_type="INT")
+    populate_foreign_key(db, source_table="parks", target_table="rides", fk_column="park_id", match_column="park_name")
+    alter_table_set_fk(db, table_name="rides", constarints_name="fk_rides_name", column_name="park_id", reference_table="parks")
+    alter_table_drop_column(db, table_name="rides", column_name="park_name")
 
     # create_shops_foods(db)
     # create_shops_items(db)
@@ -128,26 +100,27 @@ def create_rides(db):
         )
 
 def insert_rides_data(db):
-    raw_rides_data = modify_raw_rides_data(rides, db)
+    # raw_rides_data = modify_raw_rides_data(rides, db)
     insert_query = """
     INSERT INTO rides
-    (ride_name, ride_type, year_opened, votes, park_id)
+    (ride_name, ride_type, year_opened, votes, park_name)
     VALUES
-    (:ride_name, :ride_type, :year_opened,:votes, :park_id)
+    (:ride_name, :ride_type, :year_opened,:votes, :park_name)
     """
-    for ride in raw_rides_data:
+    # for ride in raw_rides_data:
+    for ride in rides:
         ride_name = ride["ride_name"]
         ride_type = ride["ride_type"]
         year_opened = ride["year_opened"]
         votes = ride["votes"]
-        park_id = ride["park_id"]
+        park_name = ride["park_name"]
         db.run(
             insert_query,
             ride_name=ride_name,
             ride_type=ride_type,
             year_opened=year_opened,
             votes=votes,
-            park_id=park_id
+            park_name=park_name
         )
 
 def create_other_fac(db):
