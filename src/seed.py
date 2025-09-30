@@ -59,8 +59,38 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     alter_table_set_fk(db, table_name="shops", constarints_name="fk_shops_name", column_name="park_id", reference_table="parks")
     alter_table_drop_column(db, table_name="shops", column_name="park_name")
 
-    # create_shops_foods(db)
-    # create_shops_items(db)
+
+# def create_bridge_stall_foods(db):
+#     return db.run(
+#         """
+#             CREATE TABLE bridge_stall_foods 
+#                 (
+#                 stall_foods_id SERIAL PRIMARY KEY,
+#                 stall_id INT NOT NULL,
+#                 food_id INT NOT NULL,
+#                 FOREIGN KEY (stall_id) REFERENCES stalls(stall_id),
+#                 FOREIGN KEY (food_id) REFERENCES foods(food_id)
+#                 )
+#             """
+#         )
+
+# def create_bridge_shop_items(db):
+#     return db.run(
+#         """
+#             CREATE TABLE bridge_shop_items 
+#                 (
+#                 shop_items_id SERIAL PRIMARY KEY,
+#                 shop_id INT NOT NULL,
+#                 item_id INT NOT NULL
+#                 FOREIGN KEY (shop_id) REFERENCES shops(shop_id),
+#                 FOREIGN KEY (item_id) REFERENCES items(item_id)
+#                 )
+#             """
+#         )
+
+
+    # create_bridge_stall_foods(db)
+    # create_bridge_shop_items(db)
     # insert_stalls_foods_data(db)
     # insert_shops_items_data(db)
 
@@ -115,14 +145,12 @@ def create_rides(db):
         )
 
 def insert_rides_data(db):
-    # raw_rides_data = modify_raw_rides_data(rides, db)
     insert_query = """
     INSERT INTO rides
     (ride_name, ride_type, year_opened, votes, park_name)
     VALUES
     (:ride_name, :ride_type, :year_opened,:votes, :park_name)
     """
-    # for ride in raw_rides_data:
     for ride in rides:
         ride_name = ride["ride_name"]
         ride_type = ride["ride_type"]
