@@ -81,14 +81,13 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     # VALUES
     # (:stall_id, :food_id)
     # """
-    # for stall_food in bridge_stall_foods:
-    #     stall_id = stall_food["stall_id"]
-    #     food_id = stall_food["food_id"]
-    #     db.run(
-    #         insert_query,
-    #         stall_id=stall_id,
-    #         food_id=food_id
-    #     )
+    # for stall in stalls:
+    #     stall_id = db.run("SELECT stall_id FROM stalls WHERE stall_name = :stall_name",
+    #                       stall_name=stall["stall_name"])[0]["stall_id"]
+    #     for food in stall["foods_served"]:
+    #         food_id = db.run("SELECT food_id FROM foods WHERE food_name = :food_name",
+    #                          food_name=food)[0]["food_id"]
+    #         db.run(insert_query, stall_id=stall_id, food_id=food_id)
 
 # def create_bridge_shop_items(db):
 #     return db.run(
@@ -111,15 +110,13 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     # VALUES
     # (:shop_id, :item_id)
     # """
-    # for shop_item in bridge_shop_items:
-    #     shop_id = shop_item["park_name"]
-    #     item_id = shop_item["item_id"]
-    #     db.run(
-    #         insert_query,
-    #         shop_id=shop_id,
-    #         item_id=item_id
-    #     )
-
+    # for shop in shops:
+    #     shop_id = db.run("SELECT shop_id FROM shops WHERE shop_name = :shop_name",
+    #                      shop_name=shop["shop_name"])[0]["shop_id"]
+    #     for item in shop["items_sold"]:
+    #         item_id = db.run("SELECT item_id FROM items WHERE item_name = :item_name",
+    #                          item_name=item)[0]["item_id"]
+    #         db.run(insert_query, shop_id=shop_id, item_id=item_id)
 
     # create_bridge_stall_foods(db)
     # create_bridge_shop_items(db)
