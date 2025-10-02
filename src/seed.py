@@ -74,6 +74,22 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
 #             """
 #         )
 
+# def insert_bridge_stall_foods_data(db):
+    # insert_query = """
+    # INSERT INTO bridge_stall_foods
+    # (stall_id, food_id)
+    # VALUES
+    # (:stall_id, :food_id)
+    # """
+    # for stall_food in bridge_stall_foods:
+    #     stall_id = stall_food["stall_id"]
+    #     food_id = stall_food["food_id"]
+    #     db.run(
+    #         insert_query,
+    #         stall_id=stall_id,
+    #         food_id=food_id
+    #     )
+
 # def create_bridge_shop_items(db):
 #     return db.run(
 #         """
@@ -88,11 +104,27 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
 #             """
 #         )
 
+# def insert_bridge_shop_items_data(db):
+    # insert_query = """
+    # INSERT INTO bridge_shop_items
+    # (shop_id, item_id)
+    # VALUES
+    # (:shop_id, :item_id)
+    # """
+    # for shop_item in bridge_shop_items:
+    #     shop_id = shop_item["park_name"]
+    #     item_id = shop_item["item_id"]
+    #     db.run(
+    #         insert_query,
+    #         shop_id=shop_id,
+    #         item_id=item_id
+    #     )
+
 
     # create_bridge_stall_foods(db)
     # create_bridge_shop_items(db)
-    # insert_stalls_foods_data(db)
-    # insert_shops_items_data(db)
+    # insert_bridge_stall_foods_data(db)
+    # insert_bridge_shop_items_data(db)
 
     #drop_column stalls
     #drop_column foods
