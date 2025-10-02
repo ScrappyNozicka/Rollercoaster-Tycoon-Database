@@ -13,6 +13,8 @@ db = create_con()
 
 def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     """Seeds database"""
+    db.run("DROP TABLE IF EXISTS bridge_stall_foods")
+    db.run("DROP TABLE IF EXISTS bridge_shop_items")    
     db.run("DROP TABLE IF EXISTS rides")
     db.run("DROP TABLE IF EXISTS other_fac")
     db.run("DROP TABLE IF EXISTS stalls")
@@ -39,6 +41,11 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     insert_shops_data(db)
     insert_items_data(db)
 
+    create_bridge_stall_foods(db)
+    create_bridge_shop_items(db)
+    insert_bridge_stall_foods_data(db)
+    insert_bridge_shop_items_data(db)
+
     alter_table_add_column(db, table_name="rides", column_name="park_id", column_type="INT")
     populate_foreign_key(db, source_table="parks", target_table="rides", fk_column="park_id", match_column="park_name")
     alter_table_set_fk(db, table_name="rides", constarints_name="fk_rides_name", column_name="park_id", reference_table="parks")
@@ -58,73 +65,6 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     populate_foreign_key(db, source_table="parks", target_table="shops", fk_column="park_id", match_column="park_name")
     alter_table_set_fk(db, table_name="shops", constarints_name="fk_shops_name", column_name="park_id", reference_table="parks")
     alter_table_drop_column(db, table_name="shops", column_name="park_name")
-
-
-# def create_bridge_stall_foods(db):
-#     return db.run(
-#         """
-#             CREATE TABLE bridge_stall_foods 
-#                 (
-#                 stall_foods_id SERIAL PRIMARY KEY,
-#                 stall_id INT NOT NULL,
-#                 food_id INT NOT NULL,
-#                 FOREIGN KEY (stall_id) REFERENCES stalls(stall_id),
-#                 FOREIGN KEY (food_id) REFERENCES foods(food_id)
-#                 )
-#             """
-#         )
-
-# def insert_bridge_stall_foods_data(db):
-    # insert_query = """
-    # INSERT INTO bridge_stall_foods
-    # (stall_id, food_id)
-    # VALUES
-    # (:stall_id, :food_id)
-    # """
-    # for stall in stalls:
-    #     stall_id = db.run("SELECT stall_id FROM stalls WHERE stall_name = :stall_name",
-    #                       stall_name=stall["stall_name"])[0]["stall_id"]
-    #     for food in stall["foods_served"]:
-    #         food_id = db.run("SELECT food_id FROM foods WHERE food_name = :food_name",
-    #                          food_name=food)[0]["food_id"]
-    #         db.run(insert_query, stall_id=stall_id, food_id=food_id)
-
-# def create_bridge_shop_items(db):
-#     return db.run(
-#         """
-#             CREATE TABLE bridge_shop_items 
-#                 (
-#                 shop_items_id SERIAL PRIMARY KEY,
-#                 shop_id INT NOT NULL,
-#                 item_id INT NOT NULL
-#                 FOREIGN KEY (shop_id) REFERENCES shops(shop_id),
-#                 FOREIGN KEY (item_id) REFERENCES items(item_id)
-#                 )
-#             """
-#         )
-
-# def insert_bridge_shop_items_data(db):
-    # insert_query = """
-    # INSERT INTO bridge_shop_items
-    # (shop_id, item_id)
-    # VALUES
-    # (:shop_id, :item_id)
-    # """
-    # for shop in shops:
-    #     shop_id = db.run("SELECT shop_id FROM shops WHERE shop_name = :shop_name",
-    #                      shop_name=shop["shop_name"])[0]["shop_id"]
-    #     for item in shop["items_sold"]:
-    #         item_id = db.run("SELECT item_id FROM items WHERE item_name = :item_name",
-    #                          item_name=item)[0]["item_id"]
-    #         db.run(insert_query, shop_id=shop_id, item_id=item_id)
-
-    # create_bridge_stall_foods(db)
-    # create_bridge_shop_items(db)
-    # insert_bridge_stall_foods_data(db)
-    # insert_bridge_shop_items_data(db)
-
-    #drop_column stalls
-    #drop_column foods
 
 def create_parks(db):
     return db.run(
@@ -376,3 +316,82 @@ def alter_table_drop_column(db, table_name, column_name):
                 DROP COLUMN {column_name}
             """
         )
+
+def create_bridge_stall_foods(db):
+    return db.run(
+        """
+            CREATE TABLE bridge_stall_foods 
+                (
+                stall_foods_id SERIAL PRIMARY KEY,
+                stall_id INT NOT NULL,
+                food_id INT NOT NULL,
+                FOREIGN KEY (stall_id) REFERENCES stalls(stall_id),
+                FOREIGN KEY (food_id) REFERENCES foods(food_id)
+                )
+            """
+        )
+
+def insert_bridge_stall_foods_data(db):
+    insert_query = """
+    INSERT INTO bridge_stall_foods
+    (stall_id, food_id)
+    VALUES
+    (:stall_id, :food_id)
+    """
+    for stall in stalls:
+        stall_result = db.run(
+            "SELECT stall_id FROM stalls WHERE stall_name = :stall_name",
+            stall_name=stall["stall_name"]
+        )
+        stall_id = stall_result[0][0]
+
+        for food_name in stall["foods_served"]:
+            food_result = db.run(
+                "SELECT food_id FROM foods WHERE food_name = :food_name",
+                food_name=food_name
+            )
+            food_id = food_result[0][0]
+            db.run(
+                insert_query,
+                stall_id=stall_id,
+                food_id=food_id
+            )
+def create_bridge_shop_items(db):
+    return db.run(
+        """
+            CREATE TABLE bridge_shop_items 
+                (
+                shop_items_id SERIAL PRIMARY KEY,
+                shop_id INT NOT NULL,
+                item_id INT NOT NULL,
+                FOREIGN KEY (shop_id) REFERENCES shops(shop_id),
+                FOREIGN KEY (item_id) REFERENCES items(item_id)
+                )
+            """
+        )
+
+def insert_bridge_shop_items_data(db):
+    insert_query = """
+    INSERT INTO bridge_shop_items
+    (shop_id, item_id)
+    VALUES
+    (:shop_id, :item_id)
+    """
+    for shop in shops:
+        shop_result = db.run(
+            "SELECT shop_id FROM shops WHERE shop_name = :shop_name",
+            shop_name=shop["shop_name"]
+        )
+        shop_id = shop_result[0][0]
+
+        for item_name in shop["items_sold"]:
+            item_result = db.run(
+                "SELECT item_id FROM items WHERE item_name = :item_name",
+                item_name=item_name
+            )
+            item_id = item_result[0][0]
+            db.run(
+                insert_query, 
+                shop_id=shop_id, 
+                item_id=item_id
+                )

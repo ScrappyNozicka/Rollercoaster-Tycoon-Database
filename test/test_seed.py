@@ -407,3 +407,41 @@ def test_items_table_has_multi_colour_option_column(db):
                   AND column_name = 'multi_colour_option';"
     expected = db.run(test_query)
     assert  expected == [["multi_colour_option"]]
+
+def test_bridge_stall_foods_table_exists(db):
+    """test if bridge stall foods table exists"""
+    test_query = "SELECT EXISTS (SELECT FROM information_schema.tables \
+                  WHERE table_name = 'bridge_stall_foods');"
+    expected = db.run(test_query)
+    assert expected == [[True]]
+
+def test_bridge_stall_foods_table_has_stall_foods_id_column_as_serial_primary_key(db):
+    """Tests if bridge stall foods table has stall foods id as serial primary key"""
+    test_query = "SELECT column_name, data_type, column_default \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'bridge_stall_foods' \
+                  AND column_name = 'stall_foods_id';"
+    expected = db.run(test_query)
+    assert  expected[0][0] == "stall_foods_id"
+    assert  expected[0][1] == "integer"
+    assert  expected[0][2] == "nextval('bridge_stall_foods_stall_foods_id_seq'::regclass)" 
+
+def test__bridge_stall_foods_table_has_stall_id_column(db):
+    """Tests if bridge stall foods table has stall id column"""
+    test_query = "SELECT column_name, data_type \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'bridge_stall_foods' \
+                  AND column_name = 'stall_id';"
+    expected = db.run(test_query)
+    assert  expected[0][0] == "stall_id"
+    assert  expected[0][1] == "integer"
+
+def test__bridge_stall_foods_table_has_food_id_column(db):
+    """Tests if bridge stall foods table has food id column"""
+    test_query = "SELECT column_name, data_type \
+                  FROM information_schema.columns \
+                  WHERE table_name = 'bridge_stall_foods' \
+                  AND column_name = 'food_id';"
+    expected = db.run(test_query)
+    assert  expected[0][0] == "food_id"
+    assert  expected[0][1] == "integer"
