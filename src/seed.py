@@ -46,6 +46,9 @@ def seed(db, parks, rides, shops, stalls, other_fac, foods, items):
     insert_bridge_stall_foods_data(db)
     insert_bridge_shop_items_data(db)
 
+    alter_table_drop_column(db, table_name="stalls", column_name="foods_served")
+    alter_table_drop_column(db, table_name="shops", column_name="items_sold")
+
     alter_table_add_column(db, table_name="rides", column_name="park_id", column_type="INT")
     populate_foreign_key(db, source_table="parks", target_table="rides", fk_column="park_id", match_column="park_name")
     alter_table_set_fk(db, table_name="rides", constarints_name="fk_rides_name", column_name="park_id", reference_table="parks")
@@ -333,29 +336,28 @@ def create_bridge_stall_foods(db):
 
 def insert_bridge_stall_foods_data(db):
     insert_query = """
-    INSERT INTO bridge_stall_foods
-    (stall_id, food_id)
-    VALUES
-    (:stall_id, :food_id)
+        INSERT INTO bridge_stall_foods (stall_id, food_id)
+        SELECT :stall_id, :food_id
+        WHERE NOT EXISTS (
+            SELECT 1 FROM bridge_stall_foods
+            WHERE stall_id = :stall_id AND food_id = :food_id
+        )
     """
     for stall in stalls:
-        stall_result = db.run(
+        stall_rows = db.run(
             "SELECT stall_id FROM stalls WHERE stall_name = :stall_name",
             stall_name=stall["stall_name"]
         )
-        stall_id = stall_result[0][0]
+        for stall_row in stall_rows:
+            stall_id = stall_row[0]
+            for food_name in stall["foods_served"]:
+                food_row = db.run(
+                    "SELECT food_id FROM foods WHERE food_name = :food_name",
+                    food_name=food_name
+                )
+                food_id = food_row[0][0]
+                db.run(insert_query, stall_id=stall_id, food_id=food_id)
 
-        for food_name in stall["foods_served"]:
-            food_result = db.run(
-                "SELECT food_id FROM foods WHERE food_name = :food_name",
-                food_name=food_name
-            )
-            food_id = food_result[0][0]
-            db.run(
-                insert_query,
-                stall_id=stall_id,
-                food_id=food_id
-            )
 def create_bridge_shop_items(db):
     return db.run(
         """
@@ -372,26 +374,24 @@ def create_bridge_shop_items(db):
 
 def insert_bridge_shop_items_data(db):
     insert_query = """
-    INSERT INTO bridge_shop_items
-    (shop_id, item_id)
-    VALUES
-    (:shop_id, :item_id)
+        INSERT INTO bridge_shop_items (shop_id, item_id)
+        SELECT :shop_id, :item_id
+        WHERE NOT EXISTS (
+            SELECT 1 FROM bridge_shop_items
+            WHERE shop_id = :shop_id AND item_id = :item_id
+        )
     """
     for shop in shops:
-        shop_result = db.run(
+        shop_rows = db.run(
             "SELECT shop_id FROM shops WHERE shop_name = :shop_name",
             shop_name=shop["shop_name"]
         )
-        shop_id = shop_result[0][0]
-
-        for item_name in shop["items_sold"]:
-            item_result = db.run(
-                "SELECT item_id FROM items WHERE item_name = :item_name",
-                item_name=item_name
-            )
-            item_id = item_result[0][0]
-            db.run(
-                insert_query, 
-                shop_id=shop_id, 
-                item_id=item_id
+        for shop_row in shop_rows:
+            shop_id = shop_row[0]
+            for item_name in shop["items_sold"]:
+                item_row = db.run(
+                    "SELECT item_id FROM items WHERE item_name = :item_name",
+                    item_name=item_name
                 )
+                item_id = item_row[0][0]
+                db.run(insert_query, shop_id=shop_id, item_id=item_id)
