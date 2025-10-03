@@ -17,11 +17,6 @@ This project provides scripts to create, populate and manage a relational databa
 - [Make](https://www.gnu.org/software/make/)
 - [PostgreSQL](https://www.postgresql.org/docs/l)
 
-### AWS requirements
-- required secret keys:
-    - AWS_ACCESS_KEY_ID
-    - AWS_SECRET_ACCESS_KEY
-
 ### Installation
 
 1. Clone the repository:
@@ -40,4 +35,5 @@ This project provides scripts to create, populate and manage a relational databa
         make dev-setup
     - `run-checks`: Runs security tests, code checks, unit tests, coverage analysis
         ```bash
+
         make run-checks
