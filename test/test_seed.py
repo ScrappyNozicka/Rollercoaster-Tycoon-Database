@@ -605,7 +605,7 @@ def test_parks_table_content(db):
     expected = db.run(test_query)
     assert  expected == result
 
-def test_bridge_other_fac_table_content(db):
+def test_other_fac_table_content(db):
     """Tests if other_fac table has the right content"""
     result = [
         [1, 'Woodland Toilets', 1],
