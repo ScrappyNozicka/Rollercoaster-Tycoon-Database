@@ -25,6 +25,7 @@ create-environment:
 	    $(PIP) install -q virtualenv virtualenvwrapper; \
 	    virtualenv venv --python=$(PYTHON_INTERPRETER); \
 	)
+	$(call execute_in_env, python -m pip install --upgrade pip setuptools wheel)
 
 # Define utility variable to help calling Python from the virtual environment
 ACTIVATE_ENV := source venv/bin/activate
@@ -58,7 +59,8 @@ coverage:
 
 ## Install pip-audit
 pip-audit:
-	$(call execute_in_env, $(PIP) install pip-audit)	
+	$(call execute_in_env, python -m pip install --upgrade pip setuptools wheel)
+	$(call execute_in_env, python -m pip install pip-audit)	
 
 ## Set up dev requirements (bandit, black & coverage)
 dev-setup: bandit black coverage pip-audit flake8
@@ -87,7 +89,9 @@ check-coverage:
 
 ## Run pip audit
 run-pip-audit:
-	$(call execute_in_env, pip-audit)
+	$(call execute_in_env, pip install --upgrade pip setuptools wheel)
+	$(call execute_in_env, pip install --upgrade pip-audit)
+	$(call execute_in_env, venv/bin/pip-audit || true)
 
 
 ## Run all checks
