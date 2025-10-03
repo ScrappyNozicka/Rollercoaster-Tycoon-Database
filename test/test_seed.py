@@ -427,7 +427,7 @@ def test_bridge_shop_items_table_content(db):
     expected = db.run(test_query)
     assert  expected == result
 
-def test_bridge_shops_table_content(db):
+def test_shops_table_content(db):
     """Tests if bridge shops table has the right content"""
     result = [
         [1, 'Balloon Stall', 1],
@@ -456,7 +456,7 @@ def test_bridge_shops_table_content(db):
     expected = db.run(test_query)
     assert  expected == result
 
-def test_bridge_items_table_content(db):
+def test_items_table_content(db):
     """Tests if bridge items table has the right content"""
     result = [
         [1, 'Balloons', True],
@@ -520,7 +520,7 @@ def test_bridge_stall_foods_table_content(db):
     expected = db.run(test_query)
     assert  expected == result
 
-def test_bridge_stalls_table_content(db):
+def test_stalls_table_content(db):
     """Tests if bridge stalls table has the right content"""
     result = [
         [4, 'Candyfloss Stall', 1],
@@ -572,7 +572,7 @@ def test_bridge_stalls_table_content(db):
     expected = db.run(test_query)
     assert  expected == result
 
-def test_bridge_foods_table_content(db):
+def test_foods_table_content(db):
     """Tests if bridge foods table has the right content"""
     result = [
         [1, 'Ice Cream', True],
@@ -586,3 +586,101 @@ def test_bridge_foods_table_content(db):
     test_query = "SELECT * FROM foods;"
     expected = db.run(test_query)
     assert  expected == result
+
+def test_parks_table_content(db):
+    """Tests if parks table has the right content"""
+    result = [
+        [1, 'Forest Frontiers', 1999, 250],
+        [2, 'Dynamite Dunes', 2000, 650],
+        [3, 'Leafy Lake', 2003, 500],
+        [4, 'Diamond Heights', 2006, 700],
+        [5, 'Evergreen Gardens', 2009, 1000],
+        [6, 'Bumbly Beach', 2013, 750],
+        [7, 'Trinity Islands', 2015, 750],
+        [8, "Katie's Dreamland", 2018, 800],
+        [9, 'Pokey Park', 2021, 400],
+        [10, 'White Water Park', 2023, 900]
+        ]
+    test_query = "SELECT * FROM parks;"
+    expected = db.run(test_query)
+    assert  expected == result
+
+def test_bridge_other_fac_table_content(db):
+    """Tests if other_fac table has the right content"""
+    result = [
+        [1, 'Woodland Toilets', 1],
+        [2, 'Sandy Toilets', 2],
+        [3, 'Naval Toilets', 3],
+        [4, 'Sky Toilets', 4],
+        [5, 'Lush Toilets', 5],
+        [6, 'Rocky Toilets', 6],
+        [7, 'Sleepy Toilets', 8],
+        [9, 'Innapropriate Toilets', 9],
+        [8, 'Rapid Toilets', 10]
+        ]
+    test_query = "SELECT * FROM other_fac;"
+    expected = db.run(test_query)
+    assert  expected == result
+
+def test_rides_table_content(db):
+    """Tests if rides table has the right content"""
+    result = [
+        [41, 'Pirate Ship', 'Thrill Rides', 1999, 857, 1],
+        [19, 'Wooden Wild Mouse', 'Roller Coasters', 2000, 1396, 1],
+        [17, 'Wooden Roller Coaster', 'Roller Coasters', 1999, 2059, 1],
+        [8, 'Merry-Go-Round', 'Gentle Rides', 1999, 106, 1],
+        [6, 'Ferris Wheel', 'Gentle Rides', 1999, 840, 1],
+        [39, 'Twist', 'Thrill Rides', 2000, 48, 2],
+        [20, 'Wooden Wild Mine Ride', 'Roller Coasters', 2000, 1294, 2],
+        [18, 'Reversed Wooden Roller Coaster', 'Roller Coasters', 2001, 1947, 2],
+        [5, 'Haunted House', 'Gentle Rides', 2000, 84, 2],
+        [1, 'Steam Trains', 'Transport Rides', 2005, 104, 2],
+        [47, 'Dinghy Slide', 'Water Rides', 2003, 583, 3],
+        [40, 'Launched Freefall', 'Thrill Rides', 2004, 375, 3],
+        [24, 'Spinning Cars', 'Roller Coasters', 2003, 1058, 3],
+        [21, 'Ladybird Trains', 'Roller Coasters', 2003, 857, 3],
+        [9, 'Observation Tower', 'Gentle Rides', 2003, 720, 3],
+        [48, 'Log Flume', 'Water Rides', 2007, 739, 4],
+        [46, 'Top Spin', 'Thrill Rides', 2006, 239, 4],
+        [30, 'Suspended Swinging Cars', 'Roller Coasters', 2013, 2056, 4],
+        [25, 'Mine Train Coaster', 'Roller Coasters', 2015, 1302, 4],
+        [23, 'Rocket Cars', 'Roller Coasters', 2017, 1503, 4],
+        [11, 'Racing Cars', 'Gentle Rides', 2006, 20, 4],
+        [50, 'Rowing Boats', 'Water Rides', 2009, 392, 5],
+        [42, 'Go Karts', 'Thrill Rides', 2011, 127, 5],
+        [34, 'Steeplechase', 'Roller Coasters', 2017, 927, 5],
+        [28, 'Stand-up Roller Coaster', 'Roller Coasters', 2015, 503, 5],
+        [16, 'Space Rings', 'Gentle Rides', 2010, 1068, 5],
+        [7, 'Hedge Maze', 'Gentle Rides', 2009, 295, 5],
+        [3, 'Large Monorail Train', 'Transport Rides', 2009, 194, 5],
+        [51, 'Swans', 'Water Rides', 2013, 295, 6],
+        [44, 'Motion Simulator', 'Thrill Rides', 2016, 285, 6],
+        [35, 'Motorbike Races', 'Roller Coasters', 2014, 1720, 6],
+        [29, 'Corkscrew Roller Coaster', 'Roller Coasters', 2013, 1734, 6],
+        [10, 'Sportscars', 'Gentle Rides', 2013, 1058, 6],
+        [52, 'Canoes', 'Water Rides', 2015, 21, 7],
+        [37, 'Reverse Freefall Coaster', 'Roller Coasters', 2022, 2312, 7],
+        [33, 'Mini Suspended Flying Coaster', 'Roller Coasters', 2020, 1003, 7],
+        [32, 'Mini Suspended Coaster', 'Roller Coasters', 2015, 1845, 7],
+        [26, 'Looping Roller Coaster', 'Roller Coasters', 2015, 1956, 7],
+        [12, 'Pickup Trucks', 'Gentle Rides', 2015, 60, 7],
+        [2, 'Small Monorail Cars', 'Transport Rides', 2016, 749, 7],
+        [53, 'Bumper Boats', 'Water Rides', 2018, 520, 8],
+        [45, '3D Cinema', 'Thrill Rides', 2019, 539, 8],
+        [31, 'Suspended Swinging Airplane Cars', 'Roller Coasters', 2016, 2104, 8],
+        [13, 'Cheshire Cats', 'Gentle Rides', 2018, 306, 8],
+        [54, 'Water Tricycles', 'Water Rides', 2023, 133, 9],
+        [43, 'Swinging Inverter Ship', 'Thrill Rides', 2021, 386, 9],
+        [38, 'Vertical Drop Roller Coaster', 'Roller Coasters', 2021, 1840, 9],
+        [36, 'Bobsleigh Coaster', 'Roller Coasters', 2021, 1940, 9],
+        [14, 'Spiral Slide', 'Gentle Rides', 2021, 481, 9],
+        [49, 'River Rapids', 'Water Rides', 2024, 920, 10],
+        [27, 'Backwards Roller Coaster Train', 'Roller Coasters', 2024, 2057, 10],
+        [22, 'Log Trains', 'Roller Coasters', 2023, 920, 10],
+        [15, 'Dodgems', 'Gentle Rides', 2023, 82, 10],
+        [4, 'Chairlift Cars', 'Transport Rides', 2023, 438, 10]
+        ] 
+    test_query = "SELECT * FROM rides;"
+    expected = db.run(test_query)
+    assert  expected == result
+
